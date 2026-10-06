@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weaver Maritime Technologies | Naval ship repair and modernization in San Diego</title>
+<meta name="description" content="Veteran-owned San Diego company supporting Navy ship repair and modernization: SHIPALT installation planning, compartment closeout and QA documentation, production scheduling and C5I installation support.">
+<link rel="canonical" href="https://weavermaritimetechnologies.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://weavermaritimetechnologies.com/">
+<meta property="og:title" content="Weaver Maritime Technologies">
+<meta property="og:description" content="Naval ship repair and modernization support for the Navy fleet in San Diego.">
+<meta property="og:image" content="https://weavermaritimetechnologies.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Weaver Maritime Technologies logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B2136">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Weaver Maritime Technologies, LLC",
+  "url": "https://weavermaritimetechnologies.com/",
+  "logo": "https://weavermaritimetechnologies.com/logo.svg",
+  "email": "info@weavermaritimetechnologies.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US"}
+}
+</script>
+<style>
+:root {
+  --navy: #0E2A44;
+  --deep: #0B2136;
+  --ink-2: #3E5367;
+  --brass: #C88B45;
+  --brass-lt: #DDA868;
+  --sea: #245A87;
+  --sea-lt: #7FB0D6;
+  --mist: #EEF2F6;
+  --rule: #D3DCE5;
+  --white: #FFFFFF;
+  --font: 'Archivo', 'Franklin Gothic Medium', 'Helvetica Neue', Arial, sans-serif;
+  --focus: var(--sea);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  color: var(--navy);
+  background: var(--white);
+  -webkit-text-size-adjust: 100%;
+}
+a { color: var(--sea); }
+a:hover { color: var(--navy); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: -9999px; top: 12px; z-index: 10;
+  background: var(--white); color: var(--navy); padding: 8px 14px; font-weight: 600;
+}
+.skip:focus { left: 16px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.hero { background: var(--deep); color: var(--white); --focus: var(--brass-lt); padding: 28px 0 88px; }
+.hero a { color: var(--white); }
+.hero nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 26px; margin-bottom: 56px; }
+.hero nav a { font-weight: 600; font-stretch: 105%; font-size: 1rem; text-decoration: none; opacity: 0.88; }
+.hero nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; color: var(--white); }
+.brand { margin: 0 0 52px; line-height: 0; }
+.brand img { display: block; width: min(100%, 660px); height: auto; }
+
+.lede {
+  max-width: 22ch; margin: 0 0 20px;
+  font-weight: 700; font-stretch: 110%;
+  font-size: clamp(1.85rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -0.005em;
+}
+.sub { max-width: 58ch; margin: 0 0 34px; font-size: 1.125rem; color: #D2DDE8; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; margin: 0; }
+.btn {
+  display: inline-block; padding: 12px 24px; border-radius: 3px;
+  font-weight: 600; font-stretch: 105%; font-size: 1.0625rem; line-height: 1.3;
+  text-decoration: none;
+}
+.hero .btn-primary { background: var(--brass-lt); color: var(--navy); }
+.hero .btn-primary:hover { background: #E8BD84; color: var(--navy); }
+.hero .btn-secondary { color: var(--white); box-shadow: inset 0 0 0 2px var(--sea-lt); }
+.hero .btn-secondary:hover { background: rgba(127, 176, 214, 0.14); color: var(--white); }
+
+/* Sections */
+.section { padding: 88px 0; }
+.section-mist { background: var(--mist); }
+.section h2, .contact h2 {
+  margin: 0 0 24px; font-weight: 700; font-stretch: 110%;
+  font-size: 1.875rem; line-height: 1.15;
+}
+.section h3 {
+  margin: 0 0 6px; font-weight: 600; font-stretch: 105%;
+  font-size: 1.25rem; line-height: 1.3;
+}
+.section p { margin: 0 0 16px; max-width: 64ch; }
+.section p:last-child { margin-bottom: 0; }
+@media (min-width: 900px) {
+  .section .wrap, .contact .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: 0 64px; }
+  .section h2, .contact h2 { margin-bottom: 0; }
+}
+
+.capabilities { list-style: none; margin: 0; padding: 0; }
+.capabilities li { padding: 26px 0; border-top: 1px solid var(--rule); }
+.capabilities li:first-child { padding-top: 4px; border-top: 0; }
+.capabilities li:last-child { padding-bottom: 0; }
+
+.approach { display: grid; gap: 28px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 900px) { .approach { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; } }
+.approach p { font-size: 1rem; }
+
+.role { color: var(--ink-2); font-weight: 500; margin-bottom: 18px !important; }
+
+.facts { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
+.facts div { padding: 14px 0; border-top: 1px solid var(--rule); }
+.facts div:first-child { padding-top: 4px; border-top: 0; }
+.facts dt { font-weight: 600; font-size: 0.9375rem; color: var(--ink-2); }
+.facts dd { margin: 2px 0 0; }
+@media (min-width: 640px) {
+  .facts div { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 0 24px; align-items: baseline; }
+  .facts dd { margin: 0; }
+}
+
+/* Contact */
+.contact { background: var(--deep); color: var(--white); --focus: var(--brass-lt); padding: 88px 0 40px; }
+.contact .email {
+  font-weight: 600; font-stretch: 105%; font-size: clamp(1.125rem, 2.8vw, 1.5rem);
+  color: var(--sea-lt); text-decoration: none; overflow-wrap: anywhere;
+}
+.contact .email:hover { color: var(--white); text-decoration: underline; text-underline-offset: 5px; }
+.contact .label { display: block; color: #D2DDE8; font-size: 0.9375rem; margin-bottom: 2px; }
+.contact-list { display: grid; gap: 22px; margin: 0 0 56px; }
+.footer { grid-column: 1 / -1; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.16); font-size: 0.9375rem; color: #AFC3D6; }
+.footer p { margin: 0; }
+
+@media (max-width: 640px) {
+  .hero { padding-bottom: 64px; }
+  .hero nav { justify-content: flex-start; margin-bottom: 40px; }
+  .brand { margin-bottom: 40px; }
+  .section, .contact { padding-top: 60px; }
+  .section { padding-bottom: 60px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap">
+    <nav aria-label="Page sections">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <h1 class="brand">
+      <img src="logo-reversed.svg" width="1000" height="293" alt="Weaver Maritime Technologies: Naval Ship Repair and Modernization">
+    </h1>
+
+    <p class="lede">We plan, track and close out shipboard alterations for the Navy fleet in San Diego.</p>
+    <p class="sub">Weaver Maritime Technologies is a veteran-owned company supporting ship repair and modernization, from installation planning through compartment closeout.</p>
+    <p class="actions">
+      <a class="btn btn-primary" href="mailto:info@weavermaritimetechnologies.com">Email us</a>
+      <a class="btn btn-secondary" href="#capabilities">View capabilities</a>
+    </p>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section" id="capabilities" aria-labelledby="capabilities-title">
+    <div class="wrap">
+      <h2 id="capabilities-title">What we do</h2>
+      <ul class="capabilities">
+        <li>
+          <h3>SHIPALT installation planning</h3>
+          <p>We sequence alteration work against the availability schedule, engineering drawings and space access, so crews start on time and stay out of each other's way.</p>
+        </li>
+        <li>
+          <h3>Compartment closeout and QA documentation</h3>
+          <p>Space-by-space closeout, inspection records and objective quality evidence, assembled so sell-off goes through the first time.</p>
+        </li>
+        <li>
+          <h3>Production and crew scheduling</h3>
+          <p>Daily crew plans, manning and progress tracking that keep supervisors and the prime working from the same picture.</p>
+        </li>
+        <li>
+          <h3>C5I installation support</h3>
+          <p>Drawing cross-reference, cable and equipment tracking, and installation documentation for communications and combat systems work.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-mist" id="approach" aria-labelledby="approach-title">
+    <div class="wrap">
+      <h2 id="approach-title">How we work</h2>
+      <ul class="approach">
+        <li>
+          <h3>Deck-plate experience</h3>
+          <p>Led by a production manager who has run Navy modernization work on the San Diego waterfront.</p>
+        </li>
+        <li>
+          <h3>Records that hold up</h3>
+          <p>Documentation built to the standard inspectors and primes check against, not reconstructed after the fact.</p>
+        </li>
+        <li>
+          <h3>Status you can see</h3>
+          <p>Progress reported by compartment and by alteration, so open items surface early.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="leadership" aria-labelledby="leadership-title">
+    <div class="wrap">
+      <h2 id="leadership-title">Leadership</h2>
+      <div>
+        <h3>Rahman Weaver</h3>
+        <p class="role">Founder and Managing Member</p>
+        <p>Rahman is a Marine Corps officer with more than 20 years of military service. He brings production management experience from Navy ship modernization programs in San Diego, including alteration documentation, compartment closeout and crew scheduling across multiple ships.</p>
+        <p>He holds a B.S. in Aerospace Engineering from the University of Texas at Austin.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist" id="company" aria-labelledby="company-title">
+    <div class="wrap">
+      <h2 id="company-title">Company information</h2>
+      <dl class="facts">
+        <div><dt>Legal name</dt><dd>Weaver Maritime Technologies, LLC</dd></div>
+        <div><dt>Location</dt><dd>San Diego, California</dd></div>
+        <div><dt>Ownership</dt><dd>Veteran-owned small business</dd></div>
+        <div><dt>NAICS codes</dt><dd>336611 Ship Building and Repairing<br>541330 Engineering Services</dd></div>
+        <!-- Add these once SAM.gov issues them:
+        <div><dt>UEI</dt><dd>XXXXXXXXXXXX</dd></div>
+        <div><dt>CAGE code</dt><dd>XXXXX</dd></div>
+        -->
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <h2 id="contact-title">Contact</h2>
+    <div class="contact-list">
+      <div>
+        <span class="label">Teaming, subcontracts and bid requests</span>
+        <a class="email" href="mailto:contracts@weavermaritimetechnologies.com">contracts@weavermaritimetechnologies.com</a>
+      </div>
+      <div>
+        <span class="label">Everything else</span>
+        <a class="email" href="mailto:info@weavermaritimetechnologies.com">info@weavermaritimetechnologies.com</a>
+      </div>
+    </div>
+    <div class="footer">
+      <p>&copy; 2026 Weaver Maritime Technologies, LLC. San Diego, California.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
