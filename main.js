@@ -4,6 +4,7 @@
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const narrow = window.matchMedia('(max-width: 700px)');
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
@@ -27,19 +28,6 @@
     const run = () => { id = step() ? requestAnimationFrame(run) : 0; };
     return () => { if (!id) id = requestAnimationFrame(run); };
   }
-
-  /* ---------- Hero title: split letters so they can rise in one by one ---------- */
-  $$('.hero-title .word').forEach((word) => {
-    const text = word.textContent;
-    word.textContent = '';
-    for (const ch of text) {
-      const span = document.createElement('span');
-      span.className = 'ch';
-      span.textContent = ch;
-      span.style.setProperty('--d', (Math.random() * 0.75).toFixed(2) + 's');
-      word.appendChild(span);
-    }
-  });
 
   /* ---------- Statement: split words for the scroll highlight ---------- */
   const statement = $('.statement-text');
@@ -215,32 +203,21 @@
   onScroll();
 
   /* ---------- Hero: ocean, horizon and cursor ---------- */
-  // The horizon sits just under the giant title, so the letters stand on the water
+  // The horizon sits just under the headline, so the words stand on the water
   // at every screen size. offsetTop ignores the scroll parallax transform.
   const hero = $('.hero');
   const heroTitle = $('.hero-title');
-  const letters = $$('.hero-title .ch');
-  let letterCenters = [];
 
   function placeHorizon() {
     if (!hero || !heroTitle) return;
     const fontSize = parseFloat(getComputedStyle(heroTitle).fontSize);
-    const bottom = heroTitle.offsetTop + heroTitle.offsetHeight + fontSize * 0.12;
+    const bottom = heroTitle.offsetTop + heroTitle.offsetHeight + fontSize * 0.2;
     hero.style.setProperty('--horizon', ((bottom / hero.clientHeight) * 100).toFixed(2) + '%');
-  }
-
-  function measureLetters() {
-    letterCenters = letters.map((ch) => {
-      let x = ch.offsetWidth / 2;
-      let y = ch.offsetHeight / 2;
-      for (let el = ch; el && el !== heroContent; el = el.offsetParent) { x += el.offsetLeft; y += el.offsetTop; }
-      return { x, y };
-    });
   }
 
   const canvas = $('.hero-sea');
   const sea = canvas && canvas.getContext ? initSea(canvas) : null;
-  const layoutHero = () => { placeHorizon(); if (sea) sea.resize(); measureLetters(); };
+  const layoutHero = () => { placeHorizon(); if (sea) sea.resize(); };
   window.addEventListener('resize', layoutHero);
   layoutHero();
   fontsLoaded.then(layoutHero);
@@ -260,25 +237,10 @@
         last = { x: sx, y: sy, t: now };
       }
       hero.style.setProperty('--mx', ((sx / rect.width) * 2 - 1).toFixed(3));
-
-      // Letters near the cursor lift and warm to brass
-      if (finePointer && heroContent) {
-        const local = heroContent.getBoundingClientRect();
-        const px = e.clientX - local.left;
-        const py = e.clientY - local.top;
-        const fs = parseFloat(getComputedStyle(heroTitle).fontSize);
-        letters.forEach((ch, i) => {
-          const c = letterCenters[i];
-          if (!c) return;
-          const d = Math.hypot((c.x - px) / (fs * 0.45), (c.y - py) / (fs * 0.7));
-          ch.style.setProperty('--heat', clamp(1 - d, 0, 1).toFixed(3));
-        });
-      }
     }, { passive: true });
 
     hero.addEventListener('pointerleave', () => {
       hero.style.setProperty('--mx', '0');
-      letters.forEach((ch) => ch.style.setProperty('--heat', '0'));
     });
 
     hero.addEventListener('pointerdown', (e) => {
@@ -426,194 +388,761 @@
     return { resize, addRipple, ping };
   }
 
+  /* ---------- Hero headline: planned, tracked, closed out ---------- */
+  const rotator = $('[data-rotator]');
+  if (rotator && !reduceMotion) {
+    const wordsInTurn = $$('span', rotator);
+    let turn = 0;
+    let heroVisible = true;
+    new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; }).observe(rotator);
+    setInterval(() => {
+      if (!heroVisible || !root.classList.contains('is-loaded')) return;
+      const out = wordsInTurn[turn];
+      turn = (turn + 1) % wordsInTurn.length;
+      out.classList.remove('is-on');
+      out.classList.add('is-out');
+      setTimeout(() => out.classList.remove('is-out'), 700);
+      wordsInTurn[turn].classList.add('is-on');
+      if (sea) {
+        const r = canvas.getBoundingClientRect();
+        sea.addRipple(r.width * (0.3 + Math.random() * 0.4), r.height * (0.78 + Math.random() * 0.12), 0.18);
+      }
+    }, 2600);
+  }
+
   /* ---------- Capability drawings ---------- */
   const planArt = $('.art-plan');
   const closeoutArt = $('.art-closeout');
-  const scheduleArt = $('.art-schedule');
+  const watchArt = $('.art-watch');
   const systemsArt = $('.art-systems');
   if (planArt) initPlanArt(planArt);
   if (closeoutArt) initCloseoutArt(closeoutArt);
-  if (scheduleArt) initScheduleArt(scheduleArt);
+  if (watchArt) initWatchArt(watchArt);
   if (systemsArt) initSystemsArt(systemsArt);
 
-  // 01: slide the install zone along the hull; frame numbers follow
-  function initPlanArt(svg) {
-    const zone = $('[data-zone]', svg);
-    const dim = $('[data-zone-dim]', svg);
-    const label = $('[data-zone-label]', svg);
-    const WIDTH = 66;
-    const BOW = 728;
-    const PX_PER_FRAME = 2.75;
-    const HOME = 420;
-    let x = HOME;
-    let target = HOME;
-
-    const snap = (v) => clamp(BOW - Math.round((BOW - v) / PX_PER_FRAME) * PX_PER_FRAME, 80, BOW - WIDTH);
-    const render = () => {
-      zone.setAttribute('x', x.toFixed(1));
-      dim.setAttribute('d', `M${x.toFixed(1)} 22H${(x + WIDTH).toFixed(1)}M${x.toFixed(1)} 16V28M${(x + WIDTH).toFixed(1)} 16V28`);
-      const aft = Math.round((BOW - x) / PX_PER_FRAME);
-      label.textContent = `INSTALL ZONE · FR ${aft - 24}–${aft}`;
-      label.setAttribute('x', clamp(x + WIDTH / 2, 110, 690).toFixed(1));
+  // Runs a drawing's self-playing story. Any interaction pauses it; it picks up again after a quiet spell.
+  function storyteller(play, quiet = 9000) {
+    let token = 0;
+    let timer = 0;
+    const start = () => {
+      clearTimeout(timer);
+      const my = ++token;
+      play(() => my === token);
     };
-    const tick = animator(() => {
-      x = lerp(x, target, 0.2);
-      if (Math.abs(target - x) < 0.1) x = target;
-      render();
-      return x !== target;
-    });
-
-    svg.addEventListener('pointermove', (e) => { target = snap(toSvgPoint(svg, e).x - WIDTH / 2); tick(); });
-    svg.addEventListener('pointerleave', () => { target = HOME; tick(); });
-
-    // Walk through the planning sequence while the card is on screen
-    const steps = $$('.step-g', svg);
-    let current = steps.length - 1;
-    if (!reduceMotion && steps.length) {
-      setInterval(() => {
-        if (!onScreen.has(svg) || !svg.classList.contains('is-live')) return;
-        steps[current].classList.remove('is-on');
-        current = (current + 1) % steps.length;
-        steps[current].classList.add('is-on');
-      }, 1500);
-    }
+    const interrupt = () => {
+      const my = ++token;
+      clearTimeout(timer);
+      if (!reduceMotion) timer = setTimeout(start, quiet);
+      return () => my === token;
+    };
+    return { start, interrupt };
+  }
+  function ready(svg) {
+    return onScreen.has(svg) && svg.classList.contains('is-live');
   }
 
-  // 02: compartments cycle open -> in QA -> closed out
-  function initCloseoutArt(svg) {
-    const art = svg.parentElement;
-    const tip = $('.art-tip', art);
-    const live = $('[data-live]', art);
-    const counter = $('[data-count]', svg);
-    const cmps = $$('.cmp', svg);
-    const ORDER = ['is-o', 'is-q', 'is-c'];
-    const LABEL = { 'is-o': 'Open', 'is-q': 'In QA', 'is-c': 'Closed out' };
-    const statusOf = (g) => ORDER.find((c) => g.classList.contains(c)) || 'is-o';
-    const nameOf = (g) => $('text', g).textContent;
+  // 01: the planner sequences three alterations, cross-checks frames, finds any that
+  // share a space at the same time, resequences them, then sends crews aboard
+  function initPlanArt(svg) {
+    const BOW = 728;
+    const PX = 2.75;
+    const LANE_END = 650;
+    const ALTS = [
+      { label: 'ALT 01', aft: 164, span: 24, slot: 150, dur: 190 },
+      { label: 'ALT 02', aft: 116, span: 20, slot: 300, dur: 170 },
+      { label: 'ALT 03', aft: 128, span: 24, slot: 330, dur: 160 },
+    ];
+    const HOME = ALTS.map((a) => a.aft);
+    const readout = $('[data-readout]', svg);
+    const live = $('[data-live]', svg.parentElement);
+    const zones = $$('[data-zone]', svg);
+    const tags = $$('[data-zone-tag]', svg);
+    const bars = $$('[data-bar]', svg);
+    const steps = $$('[data-step]', svg);
+    const clashBand = $('[data-clash]', svg);
+    const scan = $('[data-scan]', svg);
+    const fore = (a) => a.aft - a.span;
+    const zoneX = (a) => BOW - a.aft * PX;
+    const shareFrames = (a, b) => fore(a) < b.aft && fore(b) < a.aft;
+    const shareTime = (r, p) => r.start < p.start + p.a.dur && r.start + r.a.dur > p.start;
 
-    function count() {
-      const closed = cmps.filter((g) => g.classList.contains('is-c')).length;
-      counter.textContent = `${closed} / ${cmps.length} SPACES CLOSED`;
+    const crews = ALTS.map((_, i) => {
+      const g = svgEl('g', { class: 'crew' });
+      g.style.setProperty('--cd', `${i * 0.25}s`);
+      for (let k = 0; k < 3; k++) g.appendChild(svgEl('circle', { cx: k * 7, cy: 123, r: 3 }));
+      $('[data-crews]', svg).appendChild(g);
+      return g;
+    });
+    const marks = ALTS.map(() => $('[data-ruler-marks]', svg).appendChild(svgEl('rect', { class: 'ruler-mark', y: 163, height: 5, rx: 2 })));
+
+    const state = { bars: false, zones: false, crews: false, clash: false, resolved: false };
+    const set = (next) => Object.assign(state, next);
+
+    // Once resolved, later alterations slide back until no two share frames at the same time
+    function sequence() {
+      const placed = [];
+      ALTS.forEach((a, i) => {
+        const row = { i, a, start: a.slot, after: null };
+        let moved = state.resolved;
+        while (moved) {
+          moved = false;
+          for (const p of placed) {
+            if (shareFrames(a, p.a) && shareTime(row, p)) { row.start = p.start + p.a.dur; row.after = p.i; moved = true; }
+          }
+        }
+        placed.push(row);
+      });
+      return placed;
     }
 
-    function showTip(g) {
-      const box = $('.box', g).getBoundingClientRect();
-      const host = art.getBoundingClientRect();
-      tip.textContent = `${nameOf(g)} · ${LABEL[statusOf(g)]}`;
-      tip.style.left = `${box.left + box.width / 2 - host.left}px`;
-      tip.style.top = `${box.top - host.top}px`;
-      tip.hidden = false;
-    }
-    const hideTip = () => { tip.hidden = true; };
-
-    cmps.forEach((g) => {
-      const box = $('.box', g);
-      if (!$('.chk', g)) {
-        const b = box.getBBox();
-        const cx = b.x + b.width / 2;
-        const cy = b.y + b.height / 2 + (box.tagName === 'path' ? 28 : 5);
-        g.appendChild(svgEl('path', { class: 'chk', d: `M${cx - 9} ${cy}l6 6 12-14` }));
+    function describe(rows, clashes) {
+      if (clashes.length) {
+        const [p, r] = clashes[0];
+        return { text: `SPACE CONFLICT · ${p.a.label} / ${r.a.label} · FR ${Math.max(fore(p.a), fore(r.a))}–${Math.min(p.a.aft, r.a.aft)}`, alert: true };
       }
+      const over = rows.find((r) => r.start + r.a.dur > LANE_END + 0.5);
+      if (over) return { text: `${over.a.label} RUNS PAST THE AVAILABILITY`, alert: true };
+      const pushed = rows.filter((r) => r.after !== null);
+      if (pushed.length) return { text: `RESEQUENCED · ${pushed.map((r) => `${r.a.label} FOLLOWS ${ALTS[r.after].label}`).join(' · ')}`, alert: false };
+      return { text: 'NO SPACE CONFLICTS · PLAN CLEAR', alert: false };
+    }
+
+    function render(message) {
+      svg.classList.toggle('show-bars', state.bars);
+      svg.classList.toggle('show-zones', state.zones);
+      svg.classList.toggle('show-crews', state.crews);
+      const rows = sequence();
+      const clashes = [];
+      if (state.clash) {
+        rows.forEach((r, i) => rows.slice(0, i).forEach((p) => {
+          if (shareFrames(r.a, p.a) && shareTime(r, p)) clashes.push([p, r]);
+        }));
+      }
+
+      const tagged = [];
+      ALTS.forEach((a, i) => {
+        const x = zoneX(a);
+        const w = a.span * PX;
+        const c = x + w / 2;
+        const box = $('rect', zones[i]);
+        box.setAttribute('x', x.toFixed(1));
+        box.setAttribute('width', w.toFixed(1));
+        zones[i].setAttribute('aria-valuetext', `Frames ${fore(a)} to ${a.aft}`);
+        // Stack labels when zones sit close together
+        let tier = 0;
+        while (tagged.some((t) => t.tier === tier && Math.abs(t.c - c) < 54)) tier++;
+        tagged.push({ c, tier });
+        const [name, frames] = $$('text', tags[i]);
+        name.setAttribute('x', c.toFixed(1));
+        frames.setAttribute('x', c.toFixed(1));
+        name.setAttribute('y', 40 + tier * 28);
+        frames.setAttribute('y', 52 + tier * 28);
+        frames.textContent = `FR ${fore(a)}–${a.aft}`;
+        marks[i].setAttribute('x', x.toFixed(1));
+        marks[i].setAttribute('width', w.toFixed(1));
+        crews[i].style.transform = `translate(${(state.crews ? c - 7 : 92).toFixed(1)}px, 0px)`;
+        const involved = clashes.some(([p, r]) => p.i === i || r.i === i);
+        zones[i].classList.toggle('is-clash', involved);
+        bars[i].classList.toggle('is-clash', involved);
+      });
+      rows.forEach((r) => {
+        bars[r.i].style.transform = `translate(${r.start}px, 0px)`;
+        bars[r.i].classList.toggle('is-pushed', r.after !== null);
+        bars[r.i].classList.toggle('is-over', r.start + r.a.dur > LANE_END + 0.5);
+      });
+      if (clashes.length) {
+        const [p, r] = clashes[0];
+        const to = Math.min(p.a.aft, r.a.aft);
+        const from = Math.max(fore(p.a), fore(r.a));
+        clashBand.setAttribute('x', (BOW - to * PX).toFixed(1));
+        clashBand.setAttribute('width', ((to - from) * PX).toFixed(1));
+      }
+      clashBand.classList.toggle('is-on', clashes.length > 0);
+      const auto = describe(rows, clashes);
+      readout.textContent = message || auto.text;
+      readout.classList.toggle('is-alert', !message && auto.alert);
+    }
+
+    const setStep = (n) => steps.forEach((s, k) => s.classList.toggle('is-on', k === n));
+
+    async function sweep() {
+      scan.classList.remove('is-sweeping');
+      void scan.getBoundingClientRect();
+      scan.classList.add('is-sweeping');
+      await wait(1700);
+      scan.classList.remove('is-sweeping');
+    }
+
+    async function phase(n, alive) {
+      setStep(n);
+      if (n === 0) { set({ bars: true, zones: false, crews: false, clash: false, resolved: false }); render('SEQUENCING 3 ALTERATIONS'); }
+      if (n === 1) { set({ bars: true, zones: true, crews: false, clash: false, resolved: false }); render('DRAWINGS CROSS-CHECKED · 3 / 3'); }
+      if (n === 2) {
+        set({ bars: true, zones: true, crews: false, clash: false, resolved: false });
+        render('CHECKING SPACE ACCESS…');
+        if (!reduceMotion) { await sweep(); if (!alive()) return; }
+        set({ clash: true });
+        render();
+        await wait(reduceMotion ? 0 : 1700);
+        if (!alive()) return;
+        set({ clash: false, resolved: true });
+        render();
+      }
+      if (n === 3) { set({ bars: true, zones: true, crews: true, clash: false, resolved: true }); render(`${ALTS.length} CREWS ON STATION · NO CONFLICTS`); }
+    }
+
+    function reset() {
+      ALTS.forEach((a, i) => { a.aft = HOME[i]; });
+      set({ bars: false, zones: false, crews: false, clash: false, resolved: false });
+      setStep(-1);
+      render('PLANNING THE AVAILABILITY');
+    }
+
+    const story = storyteller(async (alive) => {
+      while (alive()) {
+        if (!ready(svg)) { await wait(500); continue; }
+        reset();
+        await wait(900);
+        for (let n = 0; n < 4 && alive(); n++) {
+          await phase(n, alive);
+          if (alive()) await wait(n === 3 ? 3600 : 2100);
+        }
+      }
+    });
+
+    steps.forEach((s, n) => {
+      const go = () => { const alive = story.interrupt(); phase(n, alive); };
+      s.addEventListener('click', go);
+      s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+
+    // Dragging an alteration replans live: anything that now shares its space gets resequenced
+    const takeControl = () => {
+      story.interrupt();
+      set({ bars: true, zones: true, clash: false, resolved: true });
+      setStep(2);
+    };
+    zones.forEach((zone, i) => {
+      const a = ALTS[i];
+      const moveTo = (aft) => { a.aft = clamp(aft, a.span + 6, 236); render(); };
+      zone.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        takeControl();
+        zone.setPointerCapture(e.pointerId);
+        zone.classList.add('is-dragging');
+        const x0 = toSvgPoint(svg, e).x;
+        const aft0 = a.aft;
+        const move = (ev) => moveTo(Math.round(aft0 - (toSvgPoint(svg, ev).x - x0) / PX));
+        const end = () => {
+          zone.classList.remove('is-dragging');
+          zone.removeEventListener('pointermove', move);
+          zone.removeEventListener('pointerup', end);
+          zone.removeEventListener('pointercancel', end);
+          live.textContent = readout.textContent;
+          story.interrupt();
+        };
+        zone.addEventListener('pointermove', move);
+        zone.addEventListener('pointerup', end);
+        zone.addEventListener('pointercancel', end);
+        render();
+      });
+      zone.addEventListener('keydown', (e) => {
+        const dir = { ArrowLeft: 1, ArrowRight: -1 }[e.key];
+        if (!dir) return;
+        e.preventDefault();
+        takeControl();
+        moveTo(a.aft + dir * (e.shiftKey ? 8 : 2));
+        live.textContent = readout.textContent;
+      });
+    });
+
+    reset();
+    if (reduceMotion) phase(3, () => true);
+    else story.start();
+  }
+
+  // 02: an inspector walks the deck; each space's checklist fills in until it closes out
+  function initCloseoutArt(svg) {
+    const ITEMS = ['PENETRATIONS SEALED', 'INSULATION RESTORED', 'LIGHTING & POWER TESTED', 'LABELS & PLACARDS', 'SPACE CLEANED'];
+    const START = [5, 5, 3, 5, 0, 5, 2, 5, 0, 0, 4];
+    const ROUTE = [0, 1, 2, 3, 4, 10, 9, 8, 7, 6, 5];
+    const HOME = { x: 46, y: 165 };
+    const LABEL = { 'is-c': 'CLOSED OUT', 'is-q': 'IN QA', 'is-o': 'OPEN' };
+    const plan = $('[data-plan]', svg);
+    const panel = $('[data-panel]', svg);
+    const trail = $('[data-trail]', svg);
+    const inspector = $('[data-inspector]', svg);
+    const live = $('[data-live]', svg.parentElement);
+    const cmps = $$('.cmp', svg);
+    const names = cmps.map((g) => $('text', g).textContent);
+    const centers = cmps.map((g) => {
+      const b = $('.box', g).getBBox();
+      return { x: b.x + b.width / 2, y: b.y + b.height / 2 };
+    });
+    const done = START.slice();
+    const statusOf = (n) => (n >= ITEMS.length ? 'is-c' : n === 0 ? 'is-o' : 'is-q');
+    let route = [];
+    let shown = ROUTE[0];
+    let ui;
+
+    function buildPanel() {
+      const compact = narrow.matches;
+      svg.setAttribute('viewBox', compact ? '0 0 520 330' : '0 0 800 330');
+      svg.classList.toggle('is-compact', compact);
+      if (compact) plan.setAttribute('transform', 'translate(-5 -90)');
+      else plan.removeAttribute('transform');
+      panel.replaceChildren();
+      const add = (tag, attrs, text) => {
+        const el = svgEl(tag, attrs);
+        if (text !== undefined) el.textContent = text;
+        panel.appendChild(el);
+        return el;
+      };
+      const checkRow = (x, y, label) => ({
+        box: add('rect', { class: 'qa-box', x, y: y - 10, width: 12, height: 12, rx: 2 }),
+        tick: add('path', { class: 'qa-tick', d: `M${x + 2.5} ${y - 4}l3 3 5-6` }),
+        text: add('text', { class: 'qa-item', x: x + 22, y }, label),
+      });
+      const out = { items: [] };
+      if (compact) {
+        add('text', { class: 't-brass', x: 16, y: 174 }, 'INSPECTION RECORD');
+        out.id = add('text', { class: 'qa-id', x: 16, y: 202 });
+        out.status = add('text', { class: 'qa-status', x: 16, y: 224 });
+        add('text', { class: 'wb-head', x: 16, y: 258 }, 'SELL-OFF PACKAGE');
+        add('rect', { class: 'wb-track', x: 16, y: 268, width: 220, height: 8, rx: 4 });
+        out.meter = add('rect', { class: 'wb-fill', x: 16, y: 268, width: 220, height: 8, rx: 4 });
+        out.count = add('text', { class: 't-white', x: 16, y: 298 });
+        out.records = add('text', { x: 16, y: 320 });
+        ITEMS.forEach((label, k) => out.items.push(checkRow(262, 180 + k * 30, label)));
+      } else {
+        add('text', { class: 't-brass', x: 540, y: 40 }, 'INSPECTION RECORD');
+        out.status = add('text', { class: 'qa-status', x: 780, y: 40, 'text-anchor': 'end' });
+        out.id = add('text', { class: 'qa-id', x: 540, y: 74 });
+        add('path', { class: 'ln-dim', d: 'M540 88H780' });
+        ITEMS.forEach((label, k) => out.items.push(checkRow(540, 114 + k * 25, label)));
+        add('path', { class: 'ln-dim', d: 'M540 238H780' });
+        add('text', { class: 'wb-head', x: 540, y: 260 }, 'SELL-OFF PACKAGE');
+        out.count = add('text', { class: 't-white', x: 780, y: 260, 'text-anchor': 'end' });
+        add('rect', { class: 'wb-track', x: 540, y: 270, width: 240, height: 8, rx: 4 });
+        out.meter = add('rect', { class: 'wb-fill', x: 540, y: 270, width: 240, height: 8, rx: 4 });
+        out.records = add('text', { x: 540, y: 302 });
+      }
+      return out;
+    }
+
+    function paintSpace(i) {
+      const g = cmps[i];
+      const st = statusOf(done[i]);
+      g.classList.remove('is-o', 'is-q', 'is-c');
+      g.classList.add(st);
+      g.setAttribute('aria-label', `Compartment ${names[i]}, ${LABEL[st].toLowerCase()}, ${done[i]} of ${ITEMS.length} checks. Activate to inspect.`);
+    }
+
+    function showRecord(i) {
+      shown = i;
+      const st = statusOf(done[i]);
+      ui.id.textContent = names[i];
+      ui.status.textContent = LABEL[st];
+      ui.status.setAttribute('class', `qa-status ${st}`);
+      ui.items.forEach((row, k) => {
+        const on = k < done[i];
+        row.box.classList.toggle('is-on', on);
+        row.tick.classList.toggle('is-on', on);
+        row.text.classList.toggle('is-on', on);
+      });
+      cmps.forEach((g, k) => g.classList.toggle('is-active', k === i));
+    }
+
+    function totals(message) {
+      const closed = done.filter((n) => n >= ITEMS.length).length;
+      ui.count.textContent = `${closed} / ${done.length} SPACES`;
+      ui.meter.style.transform = `scaleX(${(closed / done.length).toFixed(3)})`;
+      ui.records.textContent = message || `${done.reduce((sum, n) => sum + n, 0)} QA RECORDS ON FILE`;
+    }
+
+    function walkTo(i) {
+      const c = centers[i];
+      inspector.style.transform = `translate(${c.x}px, ${c.y}px)`;
+      route.push(`${c.x} ${c.y}`);
+      trail.setAttribute('d', route.length > 1 ? `M${route.join('L')}` : '');
+      cmps.forEach((g, k) => g.classList.toggle('is-active', k === i));
+    }
+
+    async function inspect(i, alive) {
+      walkTo(i);
+      await wait(reduceMotion ? 0 : 950);
+      if (!alive()) return;
+      showRecord(i);
+      while (alive() && done[i] < ITEMS.length) {
+        await wait(reduceMotion ? 0 : 430);
+        if (!alive()) return;
+        done[i]++;
+        paintSpace(i);
+        showRecord(i);
+        totals();
+      }
+    }
+
+    function reset() {
+      START.forEach((n, i) => { done[i] = n; paintSpace(i); });
+      route = [`${HOME.x} ${HOME.y}`];
+      trail.setAttribute('d', '');
+      inspector.style.transform = `translate(${HOME.x}px, ${HOME.y}px)`;
+      showRecord(ROUTE.find((i) => done[i] < ITEMS.length));
+      totals();
+    }
+
+    const story = storyteller(async (alive) => {
+      while (alive()) {
+        if (!ready(svg)) { await wait(500); continue; }
+        const next = ROUTE.find((i) => done[i] < ITEMS.length);
+        if (next === undefined) {
+          cmps.forEach((g) => g.classList.remove('is-active'));
+          ui.id.textContent = 'SELL-OFF READY';
+          ui.status.textContent = 'ALL CLOSED';
+          ui.status.setAttribute('class', 'qa-status is-c');
+          totals('PACKAGE READY FOR SELL-OFF');
+          await wait(3200);
+          if (alive()) reset();
+          await wait(1000);
+          continue;
+        }
+        await inspect(next, alive);
+        await wait(700);
+      }
+    });
+
+    cmps.forEach((g, i) => {
       g.setAttribute('tabindex', '0');
       g.setAttribute('role', 'button');
-      const describe = () => g.setAttribute('aria-label', `Compartment ${nameOf(g)}, ${LABEL[statusOf(g)]}. Activate to change status.`);
-      describe();
-
-      const cycle = () => {
-        const now = statusOf(g);
-        const next = ORDER[(ORDER.indexOf(now) + 1) % ORDER.length];
-        g.classList.replace(now, next);
-        svg.classList.add('is-live');
-        describe();
-        count();
-        showTip(g);
-        live.textContent = `${nameOf(g)} marked ${LABEL[next]}`;
+      const go = async () => {
+        const alive = story.interrupt();
+        await inspect(i, alive);
+        if (alive()) live.textContent = `${names[i]} ${done[i] >= ITEMS.length ? 'closed out' : 'in QA'}`;
       };
-      g.addEventListener('click', cycle);
-      g.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cycle(); }
-      });
-      g.addEventListener('pointerenter', () => showTip(g));
-      g.addEventListener('pointerleave', hideTip);
-      g.addEventListener('focus', () => showTip(g));
-      g.addEventListener('blur', hideTip);
+      g.addEventListener('click', go);
+      g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
     });
-    count();
+
+    narrow.addEventListener('change', () => { ui = buildPanel(); showRecord(shown); totals(); });
+    ui = buildPanel();
+    reset();
+    if (!reduceMotion) story.start();
   }
 
-  // 03: scrub the today line; bars fill and the progress readout follows
-  function initScheduleArt(svg) {
-    const BARS = [[180, 120], [270, 120], [330, 270], [540, 120], [600, 150]];
-    const TOTAL = BARS.reduce((sum, [, width]) => sum + width, 0);
-    const MILESTONE = 756;
-    const HOME = 480;
-    const done = $$('[data-done]', svg);
-    const line = $('[data-today-line]', svg);
-    const tag = $('[data-today-tag]', svg);
-    const tagText = $('[data-today-text]', svg);
-    const readout = $('[data-progress]', svg);
-    const milestone = $('[data-milestone]', svg);
-    let x = HOME;
-    let target = HOME;
-
-    const render = () => {
-      let complete = 0;
-      BARS.forEach(([bx, bw], i) => {
-        const filled = clamp(x - bx, 0, bw);
-        complete += filled;
-        done[i].setAttribute('width', filled.toFixed(1));
-      });
-      line.setAttribute('d', `M${x.toFixed(1)} 30V306`);
-      const tx = clamp(x, 212, 770);
-      tag.setAttribute('x', (tx - 30).toFixed(1));
-      tagText.setAttribute('x', tx.toFixed(1));
-      readout.textContent = `PROGRESS ${Math.round((complete / TOTAL) * 100)}%`;
-      milestone.classList.toggle('is-done', x >= MILESTONE);
+  // 03: a round-the-clock shift dial drives the watch bill beside it
+  function initWatchArt(svg) {
+    // [crew, headcount, space, tasks done, tasks planned]
+    const SHIFTS = {
+      day: { name: 'DAY SHIFT', handoff: '1430', crews: [
+        ['ELECTRICAL', 6, '2-120-1-C', 3, 4], ['PIPEFITTING', 4, '3-140-0-E', 2, 3],
+        ['SHIPFITTING', 5, '2-160-2-Q', 1, 3], ['QA INSPECTION', 2, 'CLOSEOUT WALK', 3, 4]] },
+      swing: { name: 'SWING SHIFT', handoff: '2300', crews: [
+        ['ELECTRICAL', 4, '2-100-1-L', 2, 3], ['CABLE PULL', 5, 'W-101–103', 1, 2],
+        ['PAINT', 3, '2-180-2-A', 2, 2], ['QA INSPECTION', 2, '2-200-1-L', 1, 2]] },
+      night: { name: 'NIGHT SHIFT', handoff: '0600', crews: [
+        ['HOT WORK', 3, '4-200-0-E', 1, 2], ['FIRE WATCH', 2, '4-200-0-E', 1, 1],
+        ['INSULATION', 2, '3-140-0-E', 0, 2], ['CLEANUP', 2, '2-120-2-C', 1, 1]] },
     };
+    const CX = 165;
+    const CY = 168;
+    const dial = $('[data-dial]', svg);
+    const hand = $('[data-hand]', svg);
+    const timeOut = $('[data-time]', svg);
+    const shiftOut = $('[data-shift-name]', svg);
+    const board = $('[data-board]', svg);
+    const arcs = $$('[data-arc]', svg);
+    const arcLabels = $$('[data-arc-label]', svg);
+
+    const ticks = $('[data-ticks]', svg);
+    for (let h = 0; h < 24; h++) {
+      const major = h % 6 === 0;
+      ticks.appendChild(svgEl('path', {
+        class: major ? 'ln' : 'ln-dim',
+        d: `M${CX} ${CY - 108}V${CY - (major ? 95 : 100)}`,
+        transform: `rotate(${h * 15} ${CX} ${CY})`,
+      }));
+    }
+
+    // Phones get a narrower drawing: smaller dial, and the board drops the space column
+    let layout;
+    let shown = null;
+    function buildBoard() {
+      const compact = narrow.matches;
+      const x0 = compact ? 240 : 340;
+      const right = compact ? 512 : 780;
+      svg.setAttribute('viewBox', compact ? '0 0 520 330' : '0 0 800 330');
+      svg.classList.toggle('is-compact', compact);
+      if (compact) dial.setAttribute('transform', `translate(112 ${CY}) scale(0.78) translate(${-CX} ${-CY})`);
+      else dial.removeAttribute('transform');
+      board.replaceChildren();
+
+      const add = (tag, attrs, value) => {
+        const el = svgEl(tag, attrs);
+        if (value !== undefined) el.textContent = value;
+        board.appendChild(el);
+        return el;
+      };
+      add('text', { class: 't-brass', x: x0, y: 40 }, 'WATCH BILL');
+      const onDeck = add('text', { class: 't-white', x: right, y: 40, 'text-anchor': 'end' });
+      add('path', { class: 'ln-dim', d: `M${x0} 52H${right}` });
+      add('text', { class: 'wb-head', x: x0, y: 76 }, 'CREW');
+      if (compact) {
+        add('text', { class: 'wb-head', x: 404, y: 76, 'text-anchor': 'end' }, 'MANNING');
+      } else {
+        add('text', { class: 'wb-head', x: 470, y: 76 }, 'MANNING');
+        add('text', { class: 'wb-head', x: 600, y: 76 }, 'SPACE');
+      }
+      add('text', { class: 'wb-head', x: right, y: 76, 'text-anchor': 'end' }, 'DONE');
+
+      const rows = [0, 1, 2, 3].map((i) => {
+        const y = 108 + i * 44;
+        const row = { name: add('text', { class: 'wb-name', x: x0, y }) };
+        if (compact) {
+          row.size = add('text', { class: 't-white', x: 404, y, 'text-anchor': 'end' });
+        } else {
+          row.pips = Array.from({ length: 7 }, (_, k) => add('circle', { class: 'pip', cx: 474 + k * 13, cy: y - 4, r: 4.2 }));
+          row.space = add('text', { class: 'wb-space', x: 600, y });
+        }
+        const trackX = compact ? 418 : 690;
+        add('rect', { class: 'wb-track', x: trackX, y: y - 7, width: 58, height: 6, rx: 3 });
+        row.fill = add('rect', { class: 'wb-fill', x: trackX, y: y - 7, width: 58, height: 6, rx: 3 });
+        row.count = add('text', { class: 't-white', x: right, y, 'text-anchor': 'end' });
+        if (i < 3) add('path', { class: 'ln-dim', d: `M${x0} ${y + 18}H${right}` });
+        return row;
+      });
+      const tasks = add('text', { class: 't-white', x: x0, y: 300 });
+      const handoff = add('text', { class: 't-brass', x: right, y: 300, 'text-anchor': 'end' });
+      return { compact, x0, rows, onDeck, tasks, handoff };
+    }
+
+    function fillBoard(key) {
+      const shift = SHIFTS[key];
+      let crew = 0, done = 0, planned = 0;
+      shift.crews.forEach(([name, size, space, d, t], i) => {
+        const row = layout.rows[i];
+        row.name.textContent = name;
+        if (row.size) row.size.textContent = String(size);
+        if (row.pips) row.pips.forEach((pip, k) => pip.classList.toggle('is-on', k < size));
+        if (row.space) row.space.textContent = space;
+        row.fill.style.transform = `scaleX(${(d / t).toFixed(3)})`;
+        row.count.textContent = `${d}/${t}`;
+        crew += size; done += d; planned += t;
+      });
+      layout.onDeck.textContent = `ON DECK ${crew}`;
+      layout.tasks.textContent = `TASKS DONE ${done} / ${planned}`;
+      layout.handoff.textContent = `NEXT HANDOFF ${shift.handoff}`;
+    }
+
+    function showShift(key) {
+      if (key === shown) return;
+      const first = shown === null;
+      shown = key;
+      arcs.forEach((a) => a.classList.toggle('is-on', a.dataset.arc === key));
+      arcLabels.forEach((t) => t.classList.toggle('is-on', t.dataset.arcLabel === key));
+      shiftOut.textContent = SHIFTS[key].name;
+      if (first || reduceMotion) { fillBoard(key); return; }
+      board.classList.add('is-swapping');
+      setTimeout(() => { fillBoard(shown); board.classList.remove('is-swapping'); }, 160);
+    }
+
+    // 15 degrees per hour, 0000 at the top
+    const shortest = (from, to) => ((((to - from) % 360) + 540) % 360) - 180;
+    const minutesAt = (deg) => (Math.round(((((deg % 360) + 360) % 360) * 4) / 5) * 5) % 1440;
+    const shiftAt = (m) => (m >= 360 && m < 870 ? 'day' : m >= 870 && m < 1380 ? 'swing' : 'night');
+    let angle = 172.5;
+    let target = angle;
+    let steering = false;
+    let visible = false;
+    let last = performance.now();
+
+    function show() {
+      hand.setAttribute('transform', `rotate(${angle.toFixed(2)} ${CX} ${CY})`);
+      const m = minutesAt(angle);
+      timeOut.textContent = String(Math.floor(m / 60)).padStart(2, '0') + String(m % 60).padStart(2, '0');
+      showShift(shiftAt(m));
+    }
+
     const tick = animator(() => {
-      x = lerp(x, target, 0.2);
-      if (Math.abs(target - x) < 0.1) x = target;
-      render();
-      return x !== target;
+      const now = performance.now();
+      const dt = Math.min(now - last, 100) / 1000;
+      last = now;
+      // Left alone, the clock runs a full day in about half a minute
+      if (!steering && !reduceMotion && visible && svg.classList.contains('is-live')) target += dt * 12;
+      const delta = shortest(angle, target);
+      angle += steering ? delta * 0.2 : delta;
+      show();
+      return (visible && !reduceMotion) || Math.abs(delta) > 0.05;
     });
 
-    svg.addEventListener('pointermove', (e) => { target = clamp(toSvgPoint(svg, e).x, 180, 780); tick(); });
-    svg.addEventListener('pointerleave', () => { target = HOME; tick(); });
+    svg.addEventListener('pointermove', (e) => {
+      const p = toSvgPoint(svg, e);
+      if (p.x > layout.x0 - 16) return;
+      const cx = layout.compact ? 112 : CX;
+      const pointed = (Math.atan2(p.x - cx, -(p.y - CY)) * 180) / Math.PI;
+      target = angle + shortest(angle, pointed);
+      steering = true;
+      tick();
+    });
+    svg.addEventListener('pointerleave', () => { steering = false; target = angle; tick(); });
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) { last = performance.now(); tick(); }
+    }).observe(svg);
+
+    narrow.addEventListener('change', () => { layout = buildBoard(); const key = shown; shown = null; showShift(key || 'day'); });
+    layout = buildBoard();
+    show();
   }
 
-  // 04: pick a rack and a signal runs along its cable to the mast
+  // 04: each cable moves from routed to pulled, terminated and tested; the schedule keeps score
   function initSystemsArt(svg) {
-    const racks = $$('[data-rack]', svg);
+    const CABLES = [
+      { id: 'W-101', route: 'RACK 01 → WHIP', sheet: 'DWG SHT 01' },
+      { id: 'W-102', route: 'RACK 02 → RADAR', sheet: 'DWG SHT 02' },
+      { id: 'W-103', route: 'RACK 03 → DISH', sheet: 'DWG SHT 03' },
+      { id: 'W-104', route: 'RACK 01 → RACK 03', sheet: 'DWG SHT 04' },
+    ];
+    const RACKS_OF = [[0], [1], [2], [0, 2]];
+    const STAGES = ['ROUTED', 'PULLED', 'TERMINATED', 'TESTED'];
+    const NEXT_STEP = ['PULL', 'TERMINATE', 'TEST'];
+    const RUN_CLASS = ['is-routed', 'is-pulled', 'is-terminated', 'is-tested'];
+    const START = [3, 2, 1, 0];
+    const stage = START.slice();
+    const drawing = $('[data-drawing]', svg);
+    const panel = $('[data-panel]', svg);
+    const live = $('[data-live]', svg.parentElement);
+    const runs = $$('[data-run]', svg);
     const traces = $$('[data-trace]', svg);
-    const readout = $('[data-c5i]', svg);
-    let active = 0;
-    let holding = false;
+    const ends = $$('[data-ends]', svg);
+    const racks = $$('[data-rack]', svg);
+    let active = -1;
+    let ui;
 
-    const select = (i) => {
+    function buildPanel() {
+      const compact = narrow.matches;
+      svg.setAttribute('viewBox', compact ? '0 0 520 330' : '0 0 800 330');
+      svg.classList.toggle('is-compact', compact);
+      if (compact) drawing.setAttribute('transform', 'translate(2 76) scale(0.52)');
+      else drawing.removeAttribute('transform');
+      panel.replaceChildren();
+      const add = (parent, tag, attrs, text) => {
+        const el = svgEl(tag, attrs);
+        if (text !== undefined) el.textContent = text;
+        parent.appendChild(el);
+        return el;
+      };
+      const x0 = compact ? 262 : 510;
+      const right = compact ? 512 : 780;
+      const out = { rows: [] };
+      add(panel, 'text', { class: 't-brass', x: x0, y: 40 }, compact ? 'CABLES' : 'CABLE SCHEDULE');
+      out.score = add(panel, 'text', { class: 't-white', x: right, y: 40, 'text-anchor': 'end' });
+      add(panel, 'path', { class: 'ln-dim', d: `M${x0} 52H${right}` });
+      CABLES.forEach((cable, i) => {
+        const y = compact ? 86 + i * 54 : 84 + i * 50;
+        const row = add(panel, 'g', {
+          class: 'c5i-row', tabindex: 0, role: 'button',
+          'aria-label': `Cable ${cable.id}, ${cable.route.replace('→', 'to')}. Activate to move it to the next stage.`,
+        });
+        add(row, 'rect', { class: 'c5i-hit', x: x0 - 8, y: y - 6, width: right - x0 + 12, height: compact ? 50 : 46, rx: 6 });
+        add(row, 'text', { class: 'c5i-id', x: x0, y: y + 14 }, cable.id);
+        const status = add(row, 'text', { class: 'c5i-status', x: right, y: y + 14, 'text-anchor': 'end' });
+        if (compact) {
+          add(row, 'text', { class: 'c5i-route', x: x0, y: y + 34 }, cable.route);
+        } else {
+          add(row, 'text', { class: 'c5i-route', x: x0 + 58, y: y + 14 }, cable.route);
+          add(row, 'text', { class: 'c5i-dwg', x: x0 + 58, y: y + 31 }, cable.sheet);
+        }
+        const pips = STAGES.map((_, k) => add(row, 'rect', { class: 'c5i-pip', x: right - 52 + k * 13 + 2, y: y + (compact ? 28 : 25), width: 10, height: 4, rx: 2 }));
+        if (i < CABLES.length - 1) add(panel, 'path', { class: 'ln-dim', d: `M${x0} ${y + (compact ? 46 : 42)}H${right}` });
+        row.addEventListener('click', () => userAdvance(i));
+        row.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); userAdvance(i); } });
+        out.rows.push({ row, status, pips });
+      });
+      out.next = add(panel, 'text', { class: 't-brass', x: x0, y: compact ? 316 : 300 });
+      return out;
+    }
+
+    function paint() {
+      CABLES.forEach((cable, i) => {
+        const s = stage[i];
+        runs[i].setAttribute('class', `cable ${RUN_CLASS[s]}${i === active ? ' is-active' : ''}`);
+        $$('.cable-end', ends[i]).forEach((c) => c.classList.toggle('is-on', s >= 2));
+        const r = ui.rows[i];
+        r.status.textContent = STAGES[s];
+        r.status.setAttribute('class', `c5i-status s-${s}`);
+        r.pips.forEach((p, k) => p.classList.toggle('is-on', k <= s));
+        r.row.classList.toggle('is-active', i === active);
+      });
+      racks.forEach((rack, k) => rack.classList.toggle('is-on', active >= 0 && RACKS_OF[active].includes(k)));
+      ui.score.textContent = `TESTED ${stage.filter((s) => s === 3).length} / ${CABLES.length}`;
+      const n = stage.findIndex((s) => s < 3);
+      ui.next.textContent = n < 0 ? 'ALL CABLES TESTED · RECORDS COMPLETE' : `NEXT · ${NEXT_STEP[stage[n]]} ${CABLES[n].id}`;
+    }
+
+    // Pulling draws the cable through its run; testing sends a signal out to the far end
+    function animate(i, cls, ms) {
+      if (reduceMotion) return;
+      const t = traces[i];
+      t.classList.remove('is-pulling', 'is-testing');
+      void t.getBoundingClientRect();
+      t.classList.add(cls);
+      setTimeout(() => t.classList.remove(cls), ms);
+    }
+
+    async function advance(i, alive, announce) {
       active = i;
-      racks.forEach((r, j) => r.classList.toggle('is-on', j === i));
-      traces.forEach((t, j) => t.classList.toggle('is-on', j === i));
-      readout.textContent = `W-10${i + 1} · RACK 0${i + 1} → MAST`;
-    };
+      paint();
+      await wait(reduceMotion ? 0 : 450);
+      if (!alive()) return;
+      if (stage[i] < 3) stage[i]++;
+      if (stage[i] === 1) animate(i, 'is-pulling', 1200);
+      if (stage[i] === 3) animate(i, 'is-testing', 1900);
+      paint();
+      if (announce) live.textContent = `${CABLES[i].id} ${STAGES[stage[i]].toLowerCase()}`;
+    }
 
-    racks.forEach((rack, i) => {
+    const story = storyteller(async (alive) => {
+      while (alive()) {
+        if (!ready(svg)) { await wait(500); continue; }
+        const n = stage.findIndex((s) => s < 3);
+        if (n < 0) {
+          active = -1;
+          paint();
+          await wait(3000);
+          if (alive()) { START.forEach((s, i) => { stage[i] = s; }); paint(); }
+          await wait(1000);
+          continue;
+        }
+        await advance(n, alive, false);
+        await wait(stage[n] === 3 ? 2300 : 1500);
+      }
+    });
+
+    function userAdvance(i) {
+      const alive = story.interrupt();
+      if (stage[i] === 3) {
+        active = i;
+        paint();
+        animate(i, 'is-testing', 1900);
+        return;
+      }
+      advance(i, alive, true);
+    }
+
+    racks.forEach((rack, k) => {
       rack.setAttribute('tabindex', '0');
       rack.setAttribute('role', 'button');
-      rack.setAttribute('aria-label', `Trace cable W-10${i + 1} from rack 0${i + 1} to the mast`);
-      rack.addEventListener('pointerenter', () => { holding = true; select(i); });
-      rack.addEventListener('pointerleave', () => { holding = false; });
-      rack.addEventListener('click', () => select(i));
-      rack.addEventListener('focus', () => { holding = true; select(i); });
-      rack.addEventListener('blur', () => { holding = false; });
+      rack.setAttribute('aria-label', `Rack 0${k + 1}: move cable ${CABLES[k].id} to the next stage`);
+      rack.addEventListener('click', () => userAdvance(k));
+      rack.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); userAdvance(k); } });
     });
-    select(0);
 
-    if (!reduceMotion) {
-      setInterval(() => {
-        if (holding || !onScreen.has(svg)) return;
-        select((active + 1) % racks.length);
-      }, 2600);
-    }
+    narrow.addEventListener('change', () => { ui = buildPanel(); paint(); });
+    ui = buildPanel();
+    paint();
+    if (!reduceMotion) story.start();
   }
 
   /* ---------- Capability index: floating drawing preview ---------- */
@@ -914,7 +1443,7 @@
       follow();
     }, { passive: true });
     document.addEventListener('pointerover', (e) => {
-      cursor.classList.toggle('is-hover', !!e.target.closest('a, button, .cmp, .rack, .chip, .instrument-dial'));
+      cursor.classList.toggle('is-hover', !!e.target.closest('a, button, .chip, .instrument-dial, [role="button"], [role="slider"]'));
     });
     document.documentElement.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
   }
