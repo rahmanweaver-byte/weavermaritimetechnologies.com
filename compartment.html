@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Compartment detail | Weaver customer portal demo</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap">
+<style>
+body{margin:0;font-family:'Archivo',system-ui,sans-serif}
+a{color:#8F5A25}a:hover{color:#0B2136}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 20px;padding:10px clamp(16px,4vw,40px);background:#DDA868;color:#0B2136;font-size:14px;line-height:1.4}
+.demo-bar strong{font-weight:700}
+.demo-bar nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+.demo-bar a{color:#0B2136;font-weight:600}
+.demo-bar a:hover{color:#000}
+</style>
+</head>
+<body>
+<div class="demo-bar" role="note">
+  <span><strong>Portal demo with sample data.</strong> This is not a live system and nothing you click is saved.</span>
+  <nav aria-label="Demo">
+    <a href="field.html">Technician's tablet view</a>
+    <a href="../">Back to weavermaritimetechnologies.com</a>
+  </nav>
+</div>
+<div style="min-height: 1220px; font-family: 'Archivo', system-ui, sans-serif; color: #0B2136; background: #F4F6F8">
+
+  <header style="background: #0B2136; color: #FFFFFF">
+    <div style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 14px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px">
+      <img src="../logo-reversed.svg" alt="Weaver Maritime Technologies" style="height: 36px; width: auto">
+      <nav aria-label="Portal" style="flex: 1 1 420px; display: flex; flex-wrap: wrap; gap: 4px">
+        <a href="dashboard.html" style="padding: 10px 14px; border-radius: 6px; color: #D6E0EA; font-size: 15px; text-decoration: none">Overview</a>
+        <a href="alterations.html" style="padding: 10px 14px; border-radius: 6px; color: #D6E0EA; font-size: 15px; text-decoration: none">Alterations</a>
+        <a href="compartment.html" aria-current="page" style="padding: 10px 14px; border-radius: 6px; background: #13314F; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">Compartments</a>
+        <a href="open-items.html" style="padding: 10px 14px; border-radius: 6px; color: #D6E0EA; font-size: 15px; text-decoration: none">Open items</a>
+        <a href="reports.html" style="padding: 10px 14px; border-radius: 6px; color: #D6E0EA; font-size: 15px; text-decoration: none">Reports</a>
+      </nav>
+      <button type="button" aria-label="Account menu for J. Rivera" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 4px 12px 4px 4px; border-radius: 22px; border: 1px solid #2E4B69; background: transparent; color: #FFFFFF; font: inherit; cursor: pointer">
+        <span style="width: 36px; height: 36px; border-radius: 18px; background: #DDA868; color: #0B2136; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">JR</span>
+        <span style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2">
+          <span style="font-size: 14px; font-weight: 600">J. Rivera</span>
+          <span style="font-size: 12px; color: #B9C8D6">Example Shipyard</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main style="max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 28px 40px 48px; display: flex; flex-direction: column; gap: 24px">
+
+    <nav aria-label="Breadcrumb" style="font-size: 15px; color: #4A5B6C; display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+      <a href="dashboard.html" style="font-weight: 600">USS Example (DDG 00)</a>
+      <span aria-hidden="true">/</span>
+      <span>Deck 2</span>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page" style="color: #0B2136">2-126-1-L</span>
+    </nav>
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <h1 style="margin: 0; font-size: 44px; line-height: 1.05; font-weight: 800; font-stretch: 85%">2-126-1-L</h1>
+          <span style="padding: 6px 12px; border-radius: 999px; background: #C88B45; border: 1px solid #8F5A25; color: #0B2136; font-size: 14px; font-weight: 700">Final inspection</span>
+          <span style="padding: 4px 10px; border-radius: 999px; background: #E6ECF2; color: #4A5B6C; font-size: 13px; font-weight: 600">Sample data</span>
+        </div>
+        <p style="margin: 0; font-size: 19px; color: #4A5B6C">Crew berthing, starboard side</p>
+      </div>
+      <a href="dashboard.html" style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #B9C8D6; background: #FFFFFF; color: #0B2136; font-size: 15px; font-weight: 600; text-decoration: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B2136" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+        Back to closeout map
+      </a>
+    </div>
+
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: #DCE3EA; border: 1px solid #DCE3EA; border-radius: 12px; overflow: hidden">
+      <div style="background: #FFFFFF; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px"><dt style="font-size: 13px; color: #4A5B6C">Deck and frame</dt><dd style="margin: 0; font-size: 17px; font-weight: 600">Deck 2, frame 126</dd></div>
+      <div style="background: #FFFFFF; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px"><dt style="font-size: 13px; color: #4A5B6C">Alteration</dt><dd style="margin: 0; font-size: 17px; font-weight: 600">ALT-104</dd></div>
+      <div style="background: #FFFFFF; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px"><dt style="font-size: 13px; color: #4A5B6C">Work started</dt><dd style="margin: 0; font-size: 17px; font-weight: 600">Oct 6</dd></div>
+      <div style="background: #FFFFFF; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px"><dt style="font-size: 13px; color: #4A5B6C">Planned closeout</dt><dd style="margin: 0; font-size: 17px; font-weight: 600">Oct 28</dd></div>
+      <div style="background: #FFFFFF; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px"><dt style="font-size: 13px; color: #4A5B6C">Open items</dt><dd style="margin: 0; font-size: 17px; font-weight: 600">None</dd></div>
+    </dl>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+      <div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+        <section aria-labelledby="check-title" style="background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px">
+            <h2 id="check-title" style="margin: 0; font-size: 22px; font-weight: 700; font-stretch: 92%">Closeout checklist</h2>
+            <span style="font-size: 15px; color: #4A5B6C">11 of 12 complete</span>
+          </div>
+          <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 28px">
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Old fixtures removed</span><span style="font-size: 13px; color: #4A5B6C">Oct 7</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Foundations installed, welds inspected</span><span style="font-size: 13px; color: #4A5B6C">Oct 12</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Cables pulled and secured</span><span style="font-size: 13px; color: #4A5B6C">Oct 15</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Cables terminated and tested</span><span style="font-size: 13px; color: #4A5B6C">Oct 18</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Lighting installed and tested</span><span style="font-size: 13px; color: #4A5B6C">Oct 19</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Berths and lockers installed</span><span style="font-size: 13px; color: #4A5B6C">Oct 21</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Ventilation reconnected</span><span style="font-size: 13px; color: #4A5B6C">Oct 22</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Penetrations sealed</span><span style="font-size: 13px; color: #4A5B6C">Oct 22</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Deck covering installed</span><span style="font-size: 13px; color: #4A5B6C">Oct 23</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Paint and labels complete</span><span style="font-size: 13px; color: #4A5B6C">Oct 24</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="11" fill="#0B2136"></circle><path d="M7 12.5l3 3 7-7" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span style="flex: 1; font-size: 15px">Space cleaned for inspection</span><span style="font-size: 13px; color: #4A5B6C">Oct 26</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none"><circle cx="12" cy="12" r="10" fill="#F6E9D7" stroke="#C88B45" stroke-width="2"></circle><path d="M12 7v5l3 2" fill="none" stroke="#8F5A25" stroke-width="2" stroke-linecap="round"></path></svg><span style="flex: 1; font-size: 15px; font-weight: 600">Weaver QA inspection</span><span style="font-size: 13px; font-weight: 600; color: #8F5A25">Today</span></li>
+          </ol>
+        </section>
+
+        <section aria-labelledby="signoff-title" style="background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px">
+          <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 6px">
+            <h2 id="signoff-title" style="margin: 0; font-size: 22px; font-weight: 700; font-stretch: 92%">Your inspection</h2>
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #4A5B6C">Once Weaver QA passes this space, you can walk it and sign off here. We will email you the moment it is ready.</p>
+          </div>
+          <a href="compartment.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 8px; background: #0B2136; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+            Schedule your walkthrough
+          </a>
+        </section>
+      </div>
+
+      <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+        <section aria-labelledby="oqe-title" style="background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+          <h2 id="oqe-title" style="margin: 0; font-size: 22px; font-weight: 700; font-stretch: 92%">Quality evidence</h2>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg><span style="flex: 1; font-size: 15px">Weld inspection record</span><span style="font-size: 13px; color: #4A5B6C">Oct 12</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg><span style="flex: 1; font-size: 15px">Cable test results</span><span style="font-size: 13px; color: #4A5B6C">Oct 18</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E6ECF2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg><span style="flex: 1; font-size: 15px">Lighting test record</span><span style="font-size: 13px; color: #4A5B6C">Oct 19</span></li>
+            <li style="display: flex; align-items: center; gap: 12px; padding: 10px 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 8"></path></svg><span style="flex: 1; font-size: 15px">Progress photos, 14</span><span style="font-size: 13px; color: #4A5B6C">Oct 26</span></li>
+          </ul>
+          <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4A5B6C">Records are held in an approved system for controlled information and open there after you sign in.</p>
+        </section>
+
+        <section aria-labelledby="hist-title" style="background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+          <h2 id="hist-title" style="margin: 0; font-size: 22px; font-weight: 700; font-stretch: 92%">History</h2>
+          <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px">
+            <li style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">Moved to final inspection</span><span style="font-size: 13px; color: #4A5B6C">Today, 10:42, QA inspector</span></li>
+            <li style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">Space cleaned and ready for inspection</span><span style="font-size: 13px; color: #4A5B6C">Oct 26, 15:10, day shift lead</span></li>
+            <li style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">Paint and labels complete</span><span style="font-size: 13px; color: #4A5B6C">Oct 24, 14:05, day shift lead</span></li>
+            <li style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px">QR code posted, work started</span><span style="font-size: 13px; color: #4A5B6C">Oct 6, 07:30, project lead</span></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+
+    <p style="margin: 0; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: #4A5B6C">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+      <span>Status summaries only. Drawings and controlled records stay in the approved system for controlled information.</span>
+    </p>
+  </main>
+</div>
+</body>
+</html>
