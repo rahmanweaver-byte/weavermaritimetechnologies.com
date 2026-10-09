@@ -646,5 +646,92 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" defer></script>
 <script src="main.js" defer></script>
+<script>
+// Contact form fallback: when the visitor's email app doesn't open (common on locked-down
+// government computers), let them copy the finished message and send it from webmail.
+(() => {
+  const form = document.getElementById('contact-form');
+  const success = form && form.parentElement.querySelector('.form-success');
+  const button = success && success.querySelector('[data-copy-message]');
+  if (!button) return;
+  const CONTRACTS = 'contracts@weavermaritimetechnologies.com';
+  const INFO = 'info@weavermaritimetechnologies.com';
+  let timer = 0;
+
+  function messageText() {
+    const data = Object.fromEntries(new FormData(form));
+    const topic = data.topic || 'General';
+    const inbox = topic === 'General' ? INFO : CONTRACTS;
+    const name = (data.name || '').trim();
+    const company = (data.company || '').trim();
+    const phone = (data.phone || '').trim();
+    const lines = [
+      `To: ${inbox}`,
+      `Subject: ${topic} inquiry from ${name}${company ? `, ${company}` : ''}`,
+      '',
+      `Topic: ${topic}`,
+      `Name: ${name}`,
+    ];
+    if (company) lines.push(`Company: ${company}`);
+    lines.push(`Email: ${(data.email || '').trim()}`);
+    if (phone) lines.push(`Phone: ${phone}`);
+    lines.push('', (data.message || '').trim());
+    return lines.join('\n');
+  }
+
+  async function copy(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      area.remove();
+      return ok;
+    }
+  }
+
+  // Show the button only when the message went to the visitor's email app
+  new MutationObserver(() => {
+    if (success.hidden) return;
+    clearTimeout(timer);
+    button.textContent = 'Copy message';
+    button.hidden = !!(form.dataset.endpoint || '').trim();
+    const old = success.querySelector('.copy-fallback');
+    if (old) old.remove();
+  }).observe(success, { attributes: true, attributeFilter: ['hidden'] });
+
+  button.addEventListener('click', async () => {
+    const text = messageText();
+    clearTimeout(timer);
+    if (await copy(text)) {
+      button.textContent = 'Copied';
+      timer = setTimeout(() => { button.textContent = 'Copy message'; }, 4000);
+      return;
+    }
+    // Clipboard blocked: show the message so it can be selected and copied by hand
+    let area = success.querySelector('.copy-fallback');
+    if (!area) {
+      area = document.createElement('textarea');
+      area.className = 'copy-fallback';
+      area.readOnly = true;
+      area.rows = 8;
+      area.setAttribute('aria-label', 'Your message, ready to copy');
+      button.closest('.success-actions').before(area);
+    }
+    area.value = text;
+    area.focus();
+    area.select();
+    button.textContent = 'Copy the text above';
+  });
+})();
+</script>
 </body>
 </html>
