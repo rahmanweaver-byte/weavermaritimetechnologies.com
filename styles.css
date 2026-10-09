@@ -855,6 +855,22 @@ button.pill-link--solid:hover { background: var(--white); }
   font: inherit; font-size: 0.9rem; line-height: 1.5; color: var(--white); resize: vertical;
 }
 
+/* ---------- Customer portal ---------- */
+.portal { border-top: 1px solid var(--line); }
+.portal-shot { margin: 0; }
+.portal-frame {
+  display: block; overflow: hidden; border-radius: 14px;
+  border: 1px solid var(--line-strong); background: var(--navy);
+  transition: border-color 0.3s;
+}
+.portal-frame:hover { border-color: var(--brass-lt); }
+.portal-frame img { width: 100%; }
+.portal-shot figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--muted); }
+.portal-pair { display: grid; gap: 32px; margin-top: 40px; }
+@media (min-width: 900px) { .portal-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.portal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
+.portal-note { margin: 20px 0 0; max-width: 70ch; font-size: 0.9rem; color: var(--muted); }
+
 /* ---------- Capability statement ---------- */
 .dossier {
   position: relative; display: grid; gap: 32px; align-items: center; overflow: hidden;
