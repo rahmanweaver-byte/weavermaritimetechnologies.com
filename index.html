@@ -529,14 +529,12 @@
 
         <div class="form-card" data-reveal style="--d:.1s">
           <!--
-            Delivery: with data-endpoint left empty, the form opens the visitor's email app with the
-            message filled in and addressed to the right inbox. If no email app opens (common on
-            locked-down government computers), the visitor can copy the finished message and send it
-            from webmail, so nothing they typed is lost. To have messages arrive in your inbox
-            directly, create a free form at formspree.io and paste its URL here, for example
-            data-endpoint="https://formspree.io/f/abcdwxyz".
+            Delivery: messages go through Formspree (form "Website contact" in Rahman's Formspree
+            account) and arrive by email at the inbox set there. If Formspree can't be reached, the
+            visitor sees our email address instead. To switch back to opening the visitor's email
+            app, empty data-endpoint; the Copy message fallback then turns on automatically.
           -->
-          <form class="contact-form" id="contact-form" action="mailto:contracts@weavermaritimetechnologies.com" method="post" enctype="text/plain" data-endpoint="" novalidate>
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/mljgndna" method="post" data-endpoint="https://formspree.io/f/mljgndna" novalidate>
             <div class="form-head">
               <h3 class="form-title">Send us a message</h3>
               <span class="form-status"><i aria-hidden="true"></i>Channel open</span>
