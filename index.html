@@ -460,8 +460,8 @@
           <div><dt>Location</dt><dd>San Diego, California</dd></div>
           <div><dt>Ownership</dt><dd>Veteran-owned small business</dd></div>
           <div><dt>NAICS codes</dt><dd>336611 Ship Building and Repairing<br>541330 Engineering Services</dd></div>
-          <!-- Add these once SAM.gov issues them:
-          <div><dt>UEI</dt><dd>XXXXXXXXXXXX</dd></div>
+          <div><dt>UEI</dt><dd>LHXCNYYEMP96</dd></div>
+          <!-- Add once SAM.gov assigns it:
           <div><dt>CAGE code</dt><dd>XXXXX</dd></div>
           -->
         </dl>
@@ -487,7 +487,7 @@
             </a>
             <a class="dossier-view" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" target="_blank" rel="noopener">View in browser <span aria-hidden="true">&nearr;</span></a>
           </div>
-          <p class="dossier-meta">PDF &middot; 1 page &middot; 366 KB</p>
+          <p class="dossier-meta">PDF &middot; 1 page &middot; 572 KB</p>
         </div>
       </div>
     </div>
@@ -530,7 +530,9 @@
         <div class="form-card" data-reveal style="--d:.1s">
           <!--
             Delivery: with data-endpoint left empty, the form opens the visitor's email app with the
-            message filled in and addressed to the right inbox. To have messages arrive in your inbox
+            message filled in and addressed to the right inbox. If no email app opens (common on
+            locked-down government computers), the visitor can copy the finished message and send it
+            from webmail, so nothing they typed is lost. To have messages arrive in your inbox
             directly, create a free form at formspree.io and paste its URL here, for example
             data-endpoint="https://formspree.io/f/abcdwxyz".
           -->
@@ -611,7 +613,10 @@
             </div>
             <h3 class="success-title" data-success-title>Message ready</h3>
             <p class="success-text" data-success-text></p>
-            <button class="pill-link" type="button" data-form-reset>Write another message</button>
+            <div class="success-actions">
+              <button class="pill-link pill-link--solid" type="button" data-copy-message hidden>Copy message</button>
+              <button class="pill-link" type="button" data-form-reset>Write another message</button>
+            </div>
           </div>
         </div>
       </div>

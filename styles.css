@@ -842,9 +842,18 @@ a { color: inherit; }
   margin: 0 0 14px; font-family: var(--display); font-weight: 400;
   font-size: clamp(3rem, 6vw, 4.5rem); line-height: 0.9; text-transform: uppercase; color: var(--white);
 }
-.success-text { max-width: 46ch; margin: 0 auto 28px; }
+.success-text { max-width: 46ch; margin: 0 auto 28px; overflow-wrap: anywhere; }
 .success-text a { color: var(--sea-lt); overflow-wrap: anywhere; }
 button.pill-link { background: none; font: inherit; font-weight: 600; cursor: pointer; }
+button.pill-link--solid { background: var(--brass-lt); }
+button.pill-link--solid:hover { background: var(--white); }
+.success-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.success-actions [hidden] { display: none; }
+.copy-fallback {
+  display: block; width: 100%; max-width: 46ch; margin: 0 auto 20px; padding: 12px 14px;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: transparent;
+  font: inherit; font-size: 0.9rem; line-height: 1.5; color: var(--white); resize: vertical;
+}
 
 /* ---------- Capability statement ---------- */
 .dossier {
