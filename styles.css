@@ -137,6 +137,15 @@ a { color: inherit; }
 .header-cta:hover { background: var(--brass-lt); border-color: var(--brass-lt); color: var(--abyss); }
 @media (min-width: 900px) { .header-cta { display: inline-flex; } }
 .menu-open .header-cta { opacity: 0; pointer-events: none; }
+.header-link {
+  display: none; align-items: center; padding: 10px 4px;
+  font-size: 0.875rem; font-weight: 600; color: var(--white);
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 6px;
+  transition: color 0.3s, text-decoration-color 0.3s;
+}
+.header-link:hover { color: var(--brass-lt); text-decoration-color: currentColor; }
+@media (min-width: 900px) { .header-link { display: inline-flex; } }
+.menu-open .header-link { opacity: 0; pointer-events: none; }
 
 .menu-toggle {
   display: flex; align-items: center; gap: 14px;
