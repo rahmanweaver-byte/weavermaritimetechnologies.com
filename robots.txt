@@ -1,0 +1,5 @@
+# Weaver Maritime Technologies
+User-agent: *
+Disallow: /_print/
+
+Sitemap: https://weavermaritimetechnologies.com/sitemap.xml
