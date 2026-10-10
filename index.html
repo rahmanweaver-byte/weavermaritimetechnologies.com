@@ -773,5 +773,31 @@
   });
 })();
 </script>
+<script>
+// For the curious: a note in the browser console, and a burnt orange salute for anyone who types "hookem"
+(() => {
+  try {
+    console.log('%cHook \u2019em. \uD83E\uDD18', 'color:#BF5700;font:700 16px/1.4 Archivo,system-ui,sans-serif');
+    console.log('Weaver Maritime Technologies. Built in San Diego by a Longhorn.');
+  } catch (e) {}
+  const secret = 'hookem';
+  let typed = '';
+  document.addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (!e.key || e.key.length !== 1) return;
+    typed = (typed + e.key.toLowerCase()).slice(-secret.length);
+    if (typed !== secret) return;
+    typed = '';
+    const toast = document.createElement('div');
+    toast.setAttribute('role', 'status');
+    toast.textContent = 'Hook \u2019em \uD83E\uDD18';
+    toast.style.cssText = 'position:fixed;left:50%;bottom:32px;transform:translateX(-50%);z-index:9999;padding:14px 26px;border-radius:999px;background:#BF5700;color:#FFFFFF;font:700 18px/1 Archivo,system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,0.35);transition:opacity 0.4s';
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+    setTimeout(() => toast.remove(), 2700);
+  });
+})();
+</script>
 </body>
 </html>
