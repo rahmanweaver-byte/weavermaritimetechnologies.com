@@ -338,6 +338,17 @@ a { color: inherit; }
 }
 .section-intro { margin: 0; max-width: 44ch; color: var(--text); }
 
+/* ---------- Services ---------- */
+.services-list { display: grid; gap: 0 48px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 760px) { .services-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .services-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.service { display: flex; flex-direction: column; padding: 32px 0 40px; border-top: 1px solid var(--line); }
+.service-num { margin-bottom: 18px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--brass-lt); }
+.service h3 { margin: 0 0 12px; font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; font-stretch: 106%; line-height: 1.2; color: var(--white); }
+.service p { margin: 0; max-width: 42ch; }
+.service .service-result { margin-top: auto; padding-top: 20px; color: var(--white); font-weight: 500; }
+.service-result span { display: block; margin-bottom: 4px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-lt); }
+
 /* ---------- Capability cards (stacked) ---------- */
 .stack { position: relative; }
 .card-anchor { display: block; height: 0; }

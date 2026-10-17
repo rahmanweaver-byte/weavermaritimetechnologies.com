@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Weaver Maritime Technologies | Naval ship repair and modernization in San Diego</title>
-<meta name="description" content="Veteran-owned San Diego company supporting Navy ship repair and modernization: SHIPALT installation planning, compartment closeout and QA documentation, production scheduling and C5I installation support.">
+<meta name="description" content="Veteran-owned San Diego company supporting Navy ship repair and modernization: alteration installation planning, compartment closeout and quality, production and crew scheduling, drawing and cable cross-reference, and QR-to-portal field tracking.">
 <link rel="canonical" href="https://weavermaritimetechnologies.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://weavermaritimetechnologies.com/">
@@ -50,7 +50,7 @@
   <p class="preloader-note">Getting underway&hellip;</p>
 </div>
 
-<!-- Shared ship profile, used in the hero and the planning card -->
+<!-- Ship profile used in the hero -->
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
   <symbol id="ship" viewBox="0 0 600 104">
     <path pathLength="1" d="M14 100L8 84L130 83L430 79L588 70H598L566 100Z"/>
@@ -89,7 +89,7 @@
 <nav class="menu" id="site-menu" aria-label="Main" data-lenis-prevent>
   <div class="menu-inner">
     <ol class="menu-links">
-      <li style="--n:0"><a href="#capabilities"><span class="menu-num">01</span>Capabilities</a></li>
+      <li style="--n:0"><a href="#capabilities"><span class="menu-num">01</span>Services</a></li>
       <li style="--n:1"><a href="#approach"><span class="menu-num">02</span>How we work</a></li>
       <li style="--n:2"><a href="#leadership"><span class="menu-num">03</span>Leadership</a></li>
       <li style="--n:3"><a href="#company"><span class="menu-num">04</span>Company</a></li>
@@ -130,228 +130,58 @@
       </h1>
       <p class="hero-copy">A veteran-owned company supporting Navy ship repair and modernization, from installation planning through compartment closeout.</p>
       <div class="hero-actions">
-        <a class="pill-link pill-link--solid" href="#capabilities">Explore capabilities</a>
+        <a class="pill-link pill-link--solid" href="#capabilities">See our services</a>
         <a class="pill-link" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Capability statement <span aria-hidden="true">&darr;</span></a>
       </div>
     </div>
 
     <div class="hero-foot">
-      <span>Veteran-owned small business</span>
+      <span>Veteran-owned &middot; San Diego</span>
       <a class="scroll-cue" href="#capabilities"><span>Scroll to explore</span><i aria-hidden="true"></i></a>
       <span class="hero-hint" data-hero-hint>Tap the water to ping</span>
     </div>
   </section>
 
-  <!-- Capabilities -->
-  <section class="section capabilities" id="capabilities" aria-labelledby="capabilities-title">
+  <!-- Services -->
+  <section class="section services" id="capabilities" aria-labelledby="services-title">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow" data-reveal>What we do</p>
-        <h2 class="section-title" id="capabilities-title" data-reveal>Alteration support, from the first plan to the last closeout.</h2>
-        <p class="section-intro" data-reveal style="--d:.1s">Four capabilities, built around how ship repair and modernization work actually runs on the San Diego waterfront. Each drawing below is live, so try it.</p>
+        <h2 class="section-title" id="services-title" data-reveal>Ship repair and modernization support, start to finish.</h2>
+        <p class="section-intro" data-reveal style="--d:.1s">We work alongside primes and ship repair teams on Navy availabilities in San Diego. Here is what we deliver, and what it solves for you.</p>
       </div>
-
-      <div class="stack">
-        <span class="card-anchor" id="cap-1"></span>
-        <article class="card" style="--i:0" aria-labelledby="cap-1-title">
-          <h3 class="card-title" id="cap-1-title">SHIPALT installation planning</h3>
-          <div class="card-meta">
-            <div class="card-meta-lead">
-              <ul class="tags" aria-label="Category"><li>01</li><li>Planning</li></ul>
-              <p class="card-hint">Drag an ALT along the hull, or tap a step</p>
-            </div>
-            <p class="card-desc">We sequence alteration work against the availability schedule, engineering drawings and space access, so crews start on time and stay out of each other's way.</p>
-          </div>
-          <div class="card-art">
-            <svg class="art art-plan" viewBox="0 0 800 330" role="group" aria-labelledby="art-1-title">
-              <title id="art-1-title">Ship profile with three alteration zones. The planner sequences the work, cross-checks frames, finds two alterations sharing a space, resequences one, then sends crews to their zones.</title>
-              <defs>
-                <pattern id="clash-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <path d="M0 0V6" stroke="#EF8E7A" stroke-width="2.4"/>
-                </pattern>
-              </defs>
-              <text class="t-white plan-readout" data-readout x="400" y="16" text-anchor="middle">PLANNING THE AVAILABILITY</text>
-              <path class="ln-dim dash" d="M40 150H760"/>
-              <text x="40" y="143">DWL</text>
-              <g class="plan-zone" data-zone tabindex="0" role="slider" aria-label="ALT 01 position"><rect class="zone-box" x="277" y="28" width="66" height="122"/></g>
-              <g class="plan-zone" data-zone tabindex="0" role="slider" aria-label="ALT 02 position"><rect class="zone-box" x="409" y="28" width="55" height="122"/></g>
-              <g class="plan-zone" data-zone tabindex="0" role="slider" aria-label="ALT 03 position"><rect class="zone-box" x="376" y="28" width="66" height="122"/></g>
-              <rect class="plan-clash" data-clash x="409" y="28" width="33" height="122"/>
-              <use class="art-ship draw" href="#ship" x="70" y="40" width="660" height="114.4"/>
-              <path class="plan-scan" data-scan d="M728 22V158"/>
-              <g class="zone-tag" data-zone-tag><text class="zone-name" x="310" y="40" text-anchor="middle">ALT 01</text><text class="zone-frames" x="310" y="52" text-anchor="middle">FR 140&ndash;164</text></g>
-              <g class="zone-tag" data-zone-tag><text class="zone-name" x="436.5" y="40" text-anchor="middle">ALT 02</text><text class="zone-frames" x="436.5" y="52" text-anchor="middle">FR 96&ndash;116</text></g>
-              <g class="zone-tag" data-zone-tag><text class="zone-name" x="409" y="68" text-anchor="middle">ALT 03</text><text class="zone-frames" x="409" y="80" text-anchor="middle">FR 104&ndash;128</text></g>
-              <g data-crews></g>
-              <path class="ln draw" pathLength="1" d="M60 166H740" style="--d:.3s"/>
-              <path class="ln-dim" d="M700.5 166v5M673 166v5M645.5 166v5M590.5 166v5M563 166v5M535.5 166v5M480.5 166v5M453 166v5M425.5 166v5M370.5 166v5M343 166v5M315.5 166v5M260.5 166v5M233 166v5M205.5 166v5M150.5 166v5M123 166v5M95.5 166v5"/>
-              <path class="ln" d="M728 160v12M618 160v12M508 160v12M398 160v12M288 160v12M178 160v12M68 160v12"/>
-              <g data-ruler-marks></g>
-              <g text-anchor="middle">
-                <text x="728" y="184">FR 0</text><text x="618" y="184">FR 40</text><text x="508" y="184">FR 80</text>
-                <text x="398" y="184">FR 120</text><text x="288" y="184">FR 160</text><text x="178" y="184">FR 200</text><text x="68" y="184">FR 240</text>
-              </g>
-              <path class="ln-dim" d="M150 194V272M650 194V272"/>
-              <text x="150" y="203" dx="6">AVAILABILITY START</text>
-              <text x="650" y="203" dx="-6" text-anchor="end">END</text>
-              <g class="lane-bar" data-bar style="transform: translate(150px, 0px); --bd: 0s"><rect class="lane-fill" x="0" y="210" width="190" height="14" rx="7"/><text x="10" y="220.5">ALT 01 &middot; C5I</text></g>
-              <g class="lane-bar" data-bar style="transform: translate(300px, 0px); --bd: .15s"><rect class="lane-fill" x="0" y="230" width="170" height="14" rx="7"/><text x="10" y="240.5">ALT 02 &middot; HVAC</text></g>
-              <g class="lane-bar" data-bar style="transform: translate(330px, 0px); --bd: .3s"><rect class="lane-fill" x="0" y="250" width="160" height="14" rx="7"/><text x="10" y="260.5">ALT 03 &middot; PIPING</text></g>
-              <path class="ln-dim" d="M272 296H286M282 292l4 4-4 4M412 296H426M422 292l4 4-4 4M552 296H566M562 292l4 4-4 4"/>
-              <g class="step-g" data-step tabindex="0" role="button" aria-label="Show step 1, schedule"><rect class="step" x="150" y="284" width="120" height="24" rx="12"/><text x="210" y="300" text-anchor="middle">SCHEDULE</text></g>
-              <g class="step-g" data-step tabindex="0" role="button" aria-label="Show step 2, drawings"><rect class="step" x="290" y="284" width="120" height="24" rx="12"/><text x="350" y="300" text-anchor="middle">DRAWINGS</text></g>
-              <g class="step-g" data-step tabindex="0" role="button" aria-label="Show step 3, space access"><rect class="step" x="430" y="284" width="120" height="24" rx="12"/><text x="490" y="300" text-anchor="middle">SPACE ACCESS</text></g>
-              <g class="step-g" data-step tabindex="0" role="button" aria-label="Show step 4, crews start"><rect class="step" x="570" y="284" width="120" height="24" rx="12"/><text x="630" y="300" text-anchor="middle">CREWS START</text></g>
-            </svg>
-            <p class="visually-hidden" aria-live="polite" data-live></p>
-          </div>
-        </article>
-
-        <span class="card-anchor" id="cap-2"></span>
-        <article class="card" style="--i:1" aria-labelledby="cap-2-title">
-          <h3 class="card-title" id="cap-2-title">Compartment closeout &amp; QA</h3>
-          <div class="card-meta">
-            <div class="card-meta-lead">
-              <ul class="tags" aria-label="Category"><li>02</li><li>Quality</li></ul>
-              <p class="card-hint">Tap a space to send the inspector</p>
-            </div>
-            <p class="card-desc">Space-by-space closeout, inspection records and objective quality evidence, assembled so sell-off goes through the first time.</p>
-          </div>
-          <div class="card-art card-art--fit">
-            <svg class="art art-closeout" viewBox="0 0 800 330" role="group" aria-labelledby="art-2-title">
-              <title id="art-2-title">Deck plan with an inspector walking from space to space. Each compartment's checklist fills in until it is closed out, and the sell-off package grows.</title>
-              <g class="qa-plan" data-plan>
-                <path class="ln draw" pathLength="1" d="M24 165C24 120 48 96 92 96H380C440 96 486 128 506 165C486 202 440 234 380 234H92C48 234 24 210 24 165Z"/>
-                <path class="ln-dim dash" d="M36 165H496"/>
-                <g class="cmp" style="--d:.3s"><rect class="box" x="64" y="108" width="56" height="50" rx="2"/><text x="69" y="121">2-200-2-L</text><path class="chk" d="M83 137l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.38s"><rect class="box" x="126" y="108" width="56" height="50" rx="2"/><text x="131" y="121">2-180-2-A</text><path class="chk" d="M145 137l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.46s"><rect class="box" x="188" y="108" width="56" height="50" rx="2"/><text x="193" y="121">2-160-2-Q</text><path class="chk" d="M207 137l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.54s"><rect class="box" x="250" y="108" width="56" height="50" rx="2"/><text x="255" y="121">2-140-2-E</text><path class="chk" d="M269 137l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.62s"><rect class="box" x="312" y="108" width="56" height="50" rx="2"/><text x="317" y="121">2-120-2-C</text><path class="chk" d="M331 137l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.34s"><rect class="box" x="64" y="172" width="56" height="50" rx="2"/><text x="69" y="185">2-200-1-A</text><path class="chk" d="M83 201l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.42s"><rect class="box" x="126" y="172" width="56" height="50" rx="2"/><text x="131" y="185">2-180-1-E</text><path class="chk" d="M145 201l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.5s"><rect class="box" x="188" y="172" width="56" height="50" rx="2"/><text x="193" y="185">2-160-1-Q</text><path class="chk" d="M207 201l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.58s"><rect class="box" x="250" y="172" width="56" height="50" rx="2"/><text x="255" y="185">2-140-1-A</text><path class="chk" d="M269 201l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.66s"><rect class="box" x="312" y="172" width="56" height="50" rx="2"/><text x="317" y="185">2-120-1-C</text><path class="chk" d="M331 201l6 6 12-14"/></g>
-                <g class="cmp" style="--d:.7s"><path class="box" d="M378 118H418L458 165L418 212H378Z"/><text x="384" y="150">2-80-0-A</text><path class="chk" d="M396 176l6 6 12-14"/></g>
-                <path class="qa-trail" data-trail d=""/>
-                <g class="qa-inspector" data-inspector style="transform: translate(46px, 165px)">
-                  <circle class="qa-ring" r="12"/>
-                  <circle class="qa-dot" r="4.5"/>
-                </g>
-              </g>
-              <g class="qa-panel fade" data-panel style="--d:.5s"></g>
-            </svg>
-            <p class="visually-hidden" aria-live="polite" data-live></p>
-          </div>
-        </article>
-
-        <span class="card-anchor" id="cap-3"></span>
-        <article class="card" style="--i:2" aria-labelledby="cap-3-title">
-          <h3 class="card-title" id="cap-3-title">Production &amp; crew scheduling</h3>
-          <div class="card-meta">
-            <div class="card-meta-lead">
-              <ul class="tags" aria-label="Category"><li>03</li><li>Production</li></ul>
-              <p class="card-hint">Turn the clock to change shifts</p>
-            </div>
-            <p class="card-desc">Daily crew plans, manning and progress tracking that keep supervisors and the prime working from the same picture.</p>
-          </div>
-          <div class="card-art card-art--fit">
-            <svg class="art art-watch" viewBox="0 0 800 330" role="img" aria-labelledby="art-3-title">
-              <title id="art-3-title">Round-the-clock shift dial beside a watch bill listing each shift's crews, manning, work spaces and progress</title>
-              <g class="watch-dial" data-dial>
-                <circle class="ln-dim draw" pathLength="1" cx="165" cy="168" r="142"/>
-                <path class="shift-arc" id="arc-day" data-arc="day" d="M91.84 266.88A123 123 0 0 0 287.98 170.15"/>
-                <path class="shift-arc" id="arc-swing" data-arc="swing" d="M88.43 264.26A123 123 0 0 1 131.10 49.76"/>
-                <path class="shift-arc" id="arc-night" data-arc="night" d="M135.24 48.65A123 123 0 0 1 287.98 165.85"/>
-                <text class="arc-label" data-arc-label="day" dy="3.5"><textPath href="#arc-day" startOffset="50%" text-anchor="middle">DAY &middot; 0600&ndash;1430</textPath></text>
-                <text class="arc-label" data-arc-label="swing" dy="3.5"><textPath href="#arc-swing" startOffset="50%" text-anchor="middle">SWING &middot; 1430&ndash;2300</textPath></text>
-                <text class="arc-label" data-arc-label="night" dy="3.5"><textPath href="#arc-night" startOffset="50%" text-anchor="middle">NIGHT &middot; 2300&ndash;0600</textPath></text>
-                <g data-ticks></g>
-                <g text-anchor="middle">
-                  <text x="165" y="88">0000</text><text x="245" y="172">0600</text><text x="165" y="256">1200</text><text x="85" y="172">1800</text>
-                </g>
-                <g class="watch-hand" data-hand transform="rotate(172.5 165 168)">
-                  <path d="M165 168V62"/>
-                  <circle cx="165" cy="58" r="4.5"/>
-                </g>
-                <circle class="watch-hub" cx="165" cy="168" r="48"/>
-                <text class="watch-time" data-time x="165" y="170" text-anchor="middle">1130</text>
-                <text class="t-brass" data-shift-name x="165" y="190" text-anchor="middle">DAY SHIFT</text>
-              </g>
-              <g class="watch-board fade" data-board style="--d:.5s"></g>
-            </svg>
-          </div>
-        </article>
-
-        <span class="card-anchor" id="cap-4"></span>
-        <article class="card" style="--i:3" aria-labelledby="cap-4-title">
-          <h3 class="card-title" id="cap-4-title">C5I installation support</h3>
-          <div class="card-meta">
-            <div class="card-meta-lead">
-              <ul class="tags" aria-label="Category"><li>04</li><li>Systems</li></ul>
-              <p class="card-hint">Tap a cable to move it forward</p>
-            </div>
-            <p class="card-desc">Drawing cross-reference, cable and equipment tracking, and installation documentation for communications and combat systems work.</p>
-          </div>
-          <div class="card-art card-art--fit">
-            <svg class="art art-systems" viewBox="0 0 800 330" role="group" aria-labelledby="art-4-title">
-              <title id="art-4-title">Mast, equipment racks and cable runs beside a cable schedule. Each cable moves from routed to pulled, terminated and tested.</title>
-              <g class="c5i-drawing" data-drawing>
-                <path class="ln" d="M20 240H480"/>
-                <text x="24" y="232">MAIN DECK</text>
-                <text x="24" y="314">BELOW DECK</text>
-                <path class="ln draw" pathLength="1" d="M86 240L112 70M154 240L128 70"/>
-                <path class="ln-dim draw" pathLength="1" d="M89 220L146 190L98 160L137 130L107 100L129 75" style="--d:.3s"/>
-                <path class="ln-dim draw" pathLength="1" d="M151 220L94 190L142 160L103 130L133 100L111 75" style="--d:.3s"/>
-                <path class="ln" d="M100 70H140V62H100ZM48 100H192M120 62V46"/>
-                <path class="ln-dim" d="M56 100V128M184 100V128M68 100V84M172 100V84"/>
-                <circle class="ln" cx="120" cy="40" r="6"/>
-                <rect class="radar" x="96" y="53" width="48" height="5" rx="2"/>
-                <path class="ln" d="M142 150H164M172 132Q156 150 172 168M164 150H182"/>
-                <path class="pulse ln-brass" d="M149.4 23A34 34 0 0 1 150.8 54.4"/>
-                <path class="pulse ln-brass" d="M170.2 11A58 58 0 0 1 172.5 64.5" style="--pd:.4s"/>
-                <path class="pulse ln-brass" d="M191 -1A82 82 0 0 1 194.3 74.7" style="--pd:.8s"/>
-                <g class="fade" style="--d:.4s">
-                  <g class="rack" data-rack>
-                    <path class="ln rack-frame" d="M250 130H306V240H250Z"/>
-                    <path class="ln-dim" d="M257 146H299M257 160H299M257 174H299M257 188H299M257 202H299M257 216H299M257 230H299"/>
-                    <circle class="led" cx="293" cy="153" r="2"/><circle class="led led--b" cx="293" cy="181" r="2"/>
-                    <text x="278" y="120" text-anchor="middle">RACK 01</text>
-                  </g>
-                  <g class="rack" data-rack>
-                    <path class="ln rack-frame" d="M322 130H378V240H322Z"/>
-                    <path class="ln-dim" d="M329 146H371M329 160H371M329 174H371M329 188H371M329 202H371M329 216H371M329 230H371"/>
-                    <circle class="led" cx="365" cy="167" r="2"/><circle class="led led--b" cx="365" cy="209" r="2"/>
-                    <text x="350" y="120" text-anchor="middle">RACK 02</text>
-                  </g>
-                  <g class="rack" data-rack>
-                    <path class="ln rack-frame" d="M394 130H450V240H394Z"/>
-                    <path class="ln-dim" d="M401 146H443M401 160H443M401 174H443M401 188H443M401 202H443M401 216H443M401 230H443"/>
-                    <circle class="led" cx="437" cy="153" r="2"/><circle class="led led--b" cx="437" cy="195" r="2"/>
-                    <text x="422" y="120" text-anchor="middle">RACK 03</text>
-                  </g>
-                </g>
-                <path class="cable" data-run d="M278 240V278H116V100H56V124"/>
-                <path class="cable" data-run d="M350 240V284H120V58"/>
-                <path class="cable" data-run d="M422 240V290H124V150H170"/>
-                <path class="cable" data-run d="M290 240V262H410V240"/>
-                <path class="trace" data-trace pathLength="1" d="M278 240V278H116V100H56V124"/>
-                <path class="trace" data-trace pathLength="1" d="M350 240V284H120V58"/>
-                <path class="trace" data-trace pathLength="1" d="M422 240V290H124V150H170"/>
-                <path class="trace" data-trace pathLength="1" d="M290 240V262H410V240"/>
-                <g data-ends><circle class="cable-end" cx="278" cy="240" r="3.5"/><circle class="cable-end" cx="56" cy="124" r="3.5"/></g>
-                <g data-ends><circle class="cable-end" cx="350" cy="240" r="3.5"/><circle class="cable-end" cx="120" cy="58" r="3.5"/></g>
-                <g data-ends><circle class="cable-end" cx="422" cy="240" r="3.5"/><circle class="cable-end" cx="170" cy="150" r="3.5"/></g>
-                <g data-ends><circle class="cable-end" cx="290" cy="240" r="3.5"/><circle class="cable-end" cx="410" cy="240" r="3.5"/></g>
-                <text class="t-brass" x="300" y="314">CABLE TRUNK</text>
-              </g>
-              <g class="c5i-panel fade" data-panel style="--d:.5s"></g>
-            </svg>
-            <p class="visually-hidden" aria-live="polite" data-live></p>
-          </div>
-        </article>
-      </div>
+      <ol class="services-list">
+        <li class="service" data-reveal>
+          <span class="service-num" aria-hidden="true">01</span>
+          <h3>Alteration installation planning</h3>
+          <p>SHIPALT sequencing against the availability schedule, engineering drawings and space access.</p>
+          <p class="service-result"><span>What you get</span>Crews start on time and stay out of each other's way.</p>
+        </li>
+        <li class="service" data-reveal style="--d:.06s">
+          <span class="service-num" aria-hidden="true">02</span>
+          <h3>Compartment closeout and quality</h3>
+          <p>Space-by-space closeout, inspection records and objective quality evidence.</p>
+          <p class="service-result"><span>What you get</span>Sell-off goes through the first time.</p>
+        </li>
+        <li class="service" data-reveal style="--d:.12s">
+          <span class="service-num" aria-hidden="true">03</span>
+          <h3>Production and crew scheduling</h3>
+          <p>Crew loading, daily plans and waterfront schedules that keep the trades moving.</p>
+          <p class="service-result"><span>What you get</span>Supervisors and the prime work from the same picture.</p>
+        </li>
+        <li class="service" data-reveal style="--d:.18s">
+          <span class="service-num" aria-hidden="true">04</span>
+          <h3>Drawing and cable cross-reference</h3>
+          <p>Drawing, cable and configuration checks before installation begins.</p>
+          <p class="service-result"><span>What you get</span>Problems are caught before installation, not after it.</p>
+        </li>
+        <li class="service" data-reveal style="--d:.24s">
+          <span class="service-num" aria-hidden="true">05</span>
+          <h3>QR-to-portal field tracking</h3>
+          <p>Technicians scan the QR code posted in each compartment to pull up its drawings, work items and checklists. Every update posts to our customer portal in real time.</p>
+          <p class="service-result"><span>What you get</span>Progress you can see as it happens, without waiting for a report.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -407,40 +237,11 @@
         <figcaption>Project status, with a closeout map of every space on the deck</figcaption>
       </figure>
 
-      <div class="portal-pair">
-        <figure class="portal-shot" data-reveal>
-          <a class="portal-frame" href="compartment.html" aria-label="Open the compartment screen in the portal demo">
-            <img src="portal-compartment.webp" width="1920" height="1200" alt="Compartment screen: closeout checklist, quality evidence and history for one space" loading="lazy">
-          </a>
-          <figcaption>Each space with its checklist, quality evidence and your sign-off</figcaption>
-        </figure>
-        <figure class="portal-shot" data-reveal style="--d:.12s">
-          <a class="portal-frame" href="open-items.html" aria-label="Open the open items screen in the portal demo">
-            <img src="portal-open-items.webp" width="1920" height="1200" alt="Open items screen: questions from the field with a sketch of a proposed fix and a button to approve it" loading="lazy">
-          </a>
-          <figcaption>Questions from the field arrive with a proposed fix, ready for your answer</figcaption>
-        </figure>
-      </div>
-
       <div class="portal-actions" data-reveal>
         <a class="pill-link pill-link--solid" href="portal-demo.html">Try the demo <span aria-hidden="true">&rarr;</span></a>
         <a class="pill-link" href="#contact-form">Ask for a walkthrough</a>
       </div>
       <p class="portal-note">Shown with sample data. The portal holds status summaries only; drawings and controlled records stay in approved systems.</p>
-    </div>
-  </section>
-
-  <!-- Capability index -->
-  <section class="section solutions" aria-labelledby="solutions-title">
-    <div class="wrap">
-      <h2 class="eyebrow eyebrow--center" id="solutions-title">Our capabilities</h2>
-      <ul class="solutions-list">
-        <li><a href="#cap-1">SHIPALT planning</a></li>
-        <li><a href="#cap-2">Compartment closeout</a></li>
-        <li><a href="#cap-2">QA documentation</a></li>
-        <li><a href="#cap-3">Crew scheduling</a></li>
-        <li><a href="#cap-4">C5I installation</a></li>
-      </ul>
     </div>
   </section>
 
@@ -450,7 +251,7 @@
       <div class="leadership-head">
         <h2 class="eyebrow" id="leadership-title" data-reveal>Leadership</h2>
         <h3 class="leader-name" data-reveal>Rahman <span>Weaver</span></h3>
-        <p class="leader-role" data-reveal>Founder and Managing Member</p>
+        <p class="leader-role" data-reveal>Founder &amp; CEO</p>
       </div>
       <div class="leadership-body">
         <p class="lead" data-reveal>Rahman is a Marine Corps officer with more than 20 years of military service. He brings production management experience from Navy ship modernization programs in San Diego, including alteration documentation, compartment closeout and crew scheduling across multiple ships.</p>
@@ -466,11 +267,11 @@
     <div class="wrap leadership-grid leadership-grid--next">
       <div class="leadership-head">
         <h3 class="leader-name" data-reveal>Raphael <span>Weaver</span></h3>
-        <p class="leader-role" data-reveal>Technical Director</p>
+        <p class="leader-role" data-reveal>Chief Technology Officer</p>
       </div>
       <div class="leadership-body">
         <p class="lead" data-reveal>Raphael brings more than 16 years of software and systems engineering, including a decade building mission systems for the Navy and Air Force as a defense contractor, from Aegis combat system simulation to F-16 radar warning software.</p>
-        <p data-reveal>As Technical Director he leads Weaver's technology and the technical side of its government work: turning program requirements into delivered systems, and building the records and reporting that primes and inspectors rely on.</p>
+        <p data-reveal>As Chief Technology Officer he leads Weaver's technology and the technical side of its government work: turning program requirements into delivered systems, and building the records and reporting that primes and inspectors rely on.</p>
         <dl class="record" data-reveal>
           <div><dt>Defense industry</dt><dd>A decade on Navy and Air Force programs, starting at Northrop Grumman, including but not limited to Aegis combat system simulation, F-16 radar warning software, the Navy's Total Force Manpower Management System and Explosive Ordnance Disposal applications</dd></div>
           <div><dt>Engineering</dt><dd>16+ years, from embedded C++ to cloud, data and AI platforms, including but not limited to distributed microservices, real-time data pipelines, agentic AI workflows and leading engineering teams from requirements to deployment</dd></div>
@@ -516,8 +317,10 @@
         <dl class="record record--facts" data-reveal>
           <div><dt>Legal name</dt><dd>Weaver Maritime Technologies, LLC</dd></div>
           <div><dt>Location</dt><dd>San Diego, California</dd></div>
-          <div><dt>Ownership</dt><dd>Veteran-owned small business</dd></div>
+          <div><dt>Ownership</dt><dd>Self-certified veteran-owned small business</dd></div>
+          <div><dt>Entity</dt><dd>California LLC, established 2026</dd></div>
           <div><dt>NAICS codes</dt><dd>336611 Ship Building and Repairing<br>541330 Engineering Services</dd></div>
+          <div><dt>PSC codes</dt><dd>J019, R425</dd></div>
           <div><dt>UEI</dt><dd>LHXCNYYEMP96</dd></div>
           <!-- Add once SAM.gov assigns it:
           <div><dt>CAGE code</dt><dd>XXXXX</dd></div>
@@ -545,7 +348,7 @@
             </a>
             <a class="dossier-view" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" target="_blank" rel="noopener">View in browser <span aria-hidden="true">&nearr;</span></a>
           </div>
-          <p class="dossier-meta">PDF &middot; 1 page &middot; 572 KB</p>
+          <p class="dossier-meta">PDF &middot; 1 page &middot; 266 KB</p>
         </div>
       </div>
     </div>
@@ -692,7 +495,7 @@
 <footer class="site-footer">
   <div class="wrap footer-row">
     <p>&copy; <span data-year>2026</span> Weaver Maritime Technologies, LLC. San Diego, California.</p>
-    <p>Veteran-owned small business</p>
+    <p>Self-certified veteran-owned small business</p>
     <a class="footer-link" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Capability statement (PDF)</a>
     <a class="back-top" href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>

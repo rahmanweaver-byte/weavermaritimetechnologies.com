@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Weaver Maritime Technologies | Capability Statement</title>
+<title>Weaver Maritime Technologies, LLC capability statement</title>
 <meta name="robots" content="noindex">
 <!--
   Source for Weaver-Maritime-Technologies-Capability-Statement.pdf.
@@ -11,267 +11,165 @@
     msedge --headless=new --no-pdf-header-footer --virtual-time-budget=8000
       --print-to-pdf=Weaver-Maritime-Technologies-Capability-Statement.pdf
       http://127.0.0.1:8765/_print/capability-statement.html
+  Add the CAGE code to Company data once SAM.gov assigns it; leave pending items off.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Six+Caps&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
 @page { size: 8.5in 11in; margin: 0; }
 :root {
-  --abyss: #06121F;
   --deep: #0B2136;
   --navy: #0E2A44;
-  --sea: #245A87;
-  --foam: #A9CDE6;
   --brass: #C88B45;
-  --brass-dk: #9A6428;
+  --brass-dk: #A0652A;
   --brass-lt: #DDA868;
   --ink: #16293C;
   --ink-2: #44586C;
   --mist: #EEF2F6;
-  --rule: #D3DCE5;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: #fff; }
-body {
-  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  color: var(--ink);
-  -webkit-print-color-adjust: exact; print-color-adjust: exact;
-}
+body { font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .page { position: relative; display: flex; flex-direction: column; width: 8.5in; height: 11in; overflow: hidden; }
+p { margin: 0; }
 
-/* Header band */
-.band {
-  position: relative; height: 228px; overflow: hidden; color: #fff;
-  background:
-    radial-gradient(60% 80% at 82% 100%, rgba(221, 168, 104, 0.18), transparent 70%),
-    linear-gradient(180deg, #071728 0%, var(--deep) 100%);
-}
-.band::before {
-  content: ""; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(169, 205, 230, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(169, 205, 230, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-.band-inner { position: relative; display: flex; justify-content: space-between; align-items: flex-start; padding: 34px 44px 0; }
-.logo { display: block; width: 318px; height: auto; }
+/* Header */
+.band { display: flex; justify-content: space-between; align-items: center; gap: 24px; height: 196px; padding: 0 48px; background: var(--deep); color: #fff; }
+.brand { display: flex; align-items: center; gap: 18px; }
+.brand img { width: 92px; height: 92px; }
+.wordmark { display: grid; }
+.wordmark b { font-size: 40px; font-weight: 900; font-stretch: 125%; line-height: 1; letter-spacing: 0.01em; }
+.wordmark span { margin-top: 6px; padding-bottom: 6px; border-bottom: 1.5px solid var(--brass); font-size: 11.5px; font-weight: 600; font-stretch: 110%; letter-spacing: 0.26em; color: var(--brass-lt); }
 .doc-title { text-align: right; }
-.doc-kicker { display: block; margin-bottom: 6px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--brass-lt); }
-.doc-title h1 {
-  margin: 0; font-family: 'Six Caps', 'Arial Narrow', sans-serif; font-weight: 400;
-  font-size: 66px; line-height: 0.86; letter-spacing: 0.02em; text-transform: uppercase;
-}
-.doc-title h1 span { color: var(--brass-lt); }
-.doc-sub { margin: 8px 0 0; font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--foam); }
-.band-sea { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 44px; }
-.band-ship { position: absolute; right: 52px; bottom: 30px; width: 214px; height: auto; fill: #06121F; stroke: rgba(169, 205, 230, 0.7); stroke-width: 1.4; stroke-linejoin: round; }
-.brass-rule { height: 4px; background: linear-gradient(90deg, var(--brass), var(--brass-lt) 60%, var(--brass)); }
+.doc-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--brass-lt); }
+.doc-title h1 { margin: 8px 0 10px; font-size: 22px; white-space: nowrap; font-weight: 700; color: #fff; }
+.doc-title p { font-size: 12.5px; line-height: 1.5; color: #C9D6E2; }
 
 /* Body */
-.body { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 30px; padding: 26px 44px 0; }
-h2 {
-  display: flex; align-items: center; gap: 8px; margin: 0 0 9px;
-  font-size: 9.5px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-dk);
-}
-h2::before { content: ""; width: 18px; height: 1.5px; background: currentColor; }
-section + section { margin-top: 26px; }
-.side section + section { margin-top: 0; }
-p { margin: 0; }
-.lead { font-size: 13px; line-height: 1.58; color: var(--ink); }
-.lead strong { color: var(--navy); }
-
-.competencies { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; }
-.comp { padding-top: 9px; border-top: 1px solid var(--rule); }
-.comp-num { display: block; margin-bottom: 2px; font-family: 'Six Caps', sans-serif; font-size: 30px; line-height: 0.9; color: var(--brass); }
-.comp h3 { margin: 0 0 4px; font-size: 12.6px; font-weight: 800; color: var(--navy); }
-.comp p { font-size: 11.2px; line-height: 1.48; color: var(--ink-2); }
-
-.diffs { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-.diffs li { position: relative; padding-left: 18px; font-size: 11.3px; line-height: 1.5; color: var(--ink-2); }
-.diffs li::before { content: ""; position: absolute; left: 2px; top: 5px; width: 7px; height: 7px; background: var(--brass); transform: rotate(45deg); }
-.diffs strong { color: var(--navy); }
-
-.leader { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
-.leader-mark {
-  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
-  background: var(--navy); color: var(--brass-lt); font-family: 'Six Caps', sans-serif; font-size: 24px; letter-spacing: 0.04em;
-}
-.leader h3 { margin: 0; font-size: 12.5px; font-weight: 800; color: var(--navy); }
-.leader .role { margin: 1px 0 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dk); }
-.leader p.bio { font-size: 11.2px; line-height: 1.5; color: var(--ink-2); }
+.body { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 34px; padding: 34px 48px 0; }
+h2 { margin: 0 0 10px; font-size: 18px; font-weight: 800; color: var(--navy); }
+section + section { margin-top: 24px; }
+.lead { font-size: 12.5px; line-height: 1.6; }
+.comp + .comp { margin-top: 12px; }
+.comp h3 { margin: 0 0 2px; font-size: 13px; font-weight: 800; color: var(--navy); }
+.comp p { font-size: 11.6px; line-height: 1.5; color: var(--ink-2); }
+.diffs { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.diffs li { position: relative; padding-left: 18px; font-size: 12px; line-height: 1.45; }
+.diffs li::before { content: ""; position: absolute; left: 0; top: 4px; width: 8px; height: 8px; background: var(--brass); }
 
 /* Sidebar */
-.side { display: flex; flex-direction: column; gap: 16px; padding: 18px 18px 20px; border-radius: 10px; background: var(--mist); }
-.side h2 { margin-bottom: 8px; }
-.facts { margin: 0; }
-.facts div { padding: 6px 0; border-top: 1px solid var(--rule); }
-.facts div:first-child { border-top: 0; padding-top: 0; }
-.facts dt { font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); }
-.facts dd { margin: 2px 0 0; font-size: 10.6px; font-weight: 600; line-height: 1.4; color: var(--ink); }
-.naics { display: grid; gap: 6px; }
-.naics div { display: grid; grid-template-columns: 50px 1fr; gap: 8px; align-items: baseline; }
-.naics b { font-size: 11.5px; font-weight: 800; color: var(--navy); letter-spacing: 0.02em; }
-.naics span { font-size: 10px; line-height: 1.35; color: var(--ink-2); }
-.chips { display: flex; flex-wrap: wrap; gap: 4px; }
-.chips span { padding: 3px 7px; border: 1px solid var(--rule); border-radius: 999px; background: #fff; font-size: 8.6px; font-weight: 600; color: var(--navy); }
-.contact div + div { margin-top: 7px; }
-.contact small { display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
-.contact a { font-size: 9.8px; font-weight: 700; color: var(--sea); text-decoration: none; }
-.badge { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule); }
-.badge img { width: 44px; height: 44px; }
-.badge p { font-size: 9.5px; font-weight: 700; line-height: 1.3; color: var(--navy); }
-.badge p span { display: block; font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-dk); }
+.side { padding: 20px 20px 22px; background: var(--mist); }
+.label { margin: 0 0 10px; font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brass-dk); }
+.facts { margin: 0; display: grid; gap: 9px; }
+.facts dt { font-size: 10px; font-weight: 600; color: var(--ink-2); }
+.facts dd { margin: 1px 0 0; font-size: 11.5px; font-weight: 700; line-height: 1.35; color: var(--navy); }
+.facts dd small { display: block; font-size: 10px; font-weight: 500; color: var(--ink); }
+.facts dd small + b { display: block; margin-top: 4px; }
+.leaders { margin-top: 18px; }
+.leader + .leader { margin-top: 12px; padding-top: 12px; border-top: 1px solid #D3DCE5; }
+.leader h3 { margin: 0; font-size: 13px; font-weight: 800; color: var(--navy); }
+.leader .role { margin: 1px 0 4px; font-size: 10.5px; color: var(--ink-2); }
+.leader .bio { font-size: 10.5px; line-height: 1.45; color: var(--ink); }
 
-/* Footer band */
-.foot {
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  margin-top: auto; padding: 13px 44px; background: var(--deep); color: var(--foam);
-  font-size: 9px; font-weight: 600; letter-spacing: 0.08em;
-}
-.foot a { color: #fff; text-decoration: none; }
-.foot b { color: var(--brass-lt); font-weight: 700; }
+/* Contact */
+.contact { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin: auto 48px 0; padding: 18px 0 30px; border-top: 3px solid var(--brass); }
+.contact h3 { margin: 0 0 4px; font-size: 14px; font-weight: 800; color: var(--navy); }
+.contact p { font-size: 12px; line-height: 1.6; }
+.contact a { color: var(--ink); text-decoration: none; }
+.qr { display: grid; justify-items: center; gap: 6px; }
+.qr svg { display: block; width: 88px; height: 88px; }
+.qr span { font-size: 10px; color: var(--ink-2); }
 </style>
 </head>
 <body>
 <div class="page">
   <header class="band">
-    <div class="band-inner">
-      <img class="logo" src="../logo-reversed.svg" alt="Weaver Maritime Technologies">
-      <div class="doc-title">
-        <span class="doc-kicker">Veteran-owned small business</span>
-        <h1>Capability <span>Statement</span></h1>
-        <p class="doc-sub">San Diego, California &middot; NAICS 336611 &middot; 541330</p>
-      </div>
+    <div class="brand">
+      <img src="../favicon.svg" alt="">
+      <div class="wordmark"><b>WEAVER</b><span>MARITIME TECHNOLOGIES</span></div>
     </div>
-    <svg class="band-sea" viewBox="0 0 816 44" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <pattern id="wave" width="44" height="11" patternUnits="userSpaceOnUse">
-          <path d="M0 6Q11 1 22 6T44 6" fill="none" stroke="rgba(127,176,214,0.45)" stroke-width="1"/>
-        </pattern>
-        <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#fff" stop-opacity="0.15"/>
-          <stop offset="1" stop-color="#fff" stop-opacity="1"/>
-        </linearGradient>
-        <mask id="fade-mask"><rect width="816" height="44" fill="url(#fade)"/></mask>
-      </defs>
-      <rect width="816" height="44" fill="url(#wave)" mask="url(#fade-mask)"/>
-    </svg>
-    <svg class="band-ship" viewBox="0 0 600 104" aria-hidden="true">
-      <path d="M14 100L8 84L130 83L430 79L588 70H598L566 100Z"/>
-      <path d="M492 77L497 71H513L517 77ZM512 73.5L540 70"/>
-      <path d="M330 80L336 56L352 48H408L416 56L424 79Z"/>
-      <path d="M344 48L349 39H398L404 48Z"/>
-      <path d="M384 54H398L400 68H382Z"/>
-      <path d="M364 39L371 8H377L384 39ZM358 18H390M362 27H386M374 8V0"/>
-      <path d="M222 81L226 62H322L326 80.5Z"/>
-      <path d="M292 62L295 45H314L317 62Z"/>
-      <path d="M236 62L239 47H257L260 62Z"/>
-      <path d="M120 83L124 64H214L220 81.5Z"/>
-      <path d="M178 64L182 42H186L190 64ZM172 50H196"/>
-    </svg>
+    <div class="doc-title">
+      <span class="doc-kicker">Capability statement</span>
+      <h1>Naval Ship Repair &amp; Modernization</h1>
+      <p>Self-certified veteran-owned small business<br>San Diego, California</p>
+    </div>
   </header>
-  <div class="brass-rule"></div>
 
   <main class="body">
     <div>
       <section>
-        <h2>Company overview</h2>
-        <p class="lead"><strong>Weaver Maritime Technologies</strong> is a veteran-owned company in San Diego supporting Navy ship repair and modernization. We plan, track and close out shipboard alterations for the fleet, from installation planning through compartment closeout, so supervisors, the prime and inspectors all work from the same picture.</p>
+        <h2>Company Overview</h2>
+        <p class="lead">Weaver Maritime Technologies, LLC is a veteran-owned San Diego small business supporting U.S. Navy ship repair and modernization. We plan, track and close out shipboard alterations so availabilities finish on schedule and pass sell-off the first time.</p>
       </section>
 
       <section>
-        <h2>Core competencies</h2>
-        <div class="competencies">
-          <div class="comp">
-            <span class="comp-num">01</span>
-            <h3>SHIPALT installation planning</h3>
-            <p>Alteration work sequenced against the availability schedule, engineering drawings and space access, so crews start on time and stay out of each other's way.</p>
-          </div>
-          <div class="comp">
-            <span class="comp-num">02</span>
-            <h3>Compartment closeout &amp; QA documentation</h3>
-            <p>Space-by-space closeout, inspection records and objective quality evidence, assembled so sell-off goes through the first time.</p>
-          </div>
-          <div class="comp">
-            <span class="comp-num">03</span>
-            <h3>Production &amp; crew scheduling</h3>
-            <p>Daily crew plans, manning and progress tracking that keep supervisors and the prime working from the same picture.</p>
-          </div>
-          <div class="comp">
-            <span class="comp-num">04</span>
-            <h3>C5I installation support</h3>
-            <p>Drawing cross-reference, cable and equipment tracking, and installation documentation for communications and combat systems work.</p>
-          </div>
-        </div>
+        <h2>Core Competencies</h2>
+        <div class="comp"><h3>Alteration installation planning</h3><p>SHIPALT sequencing against schedules, drawings and space access.</p></div>
+        <div class="comp"><h3>Compartment closeout and quality</h3><p>Space-by-space closeout, inspections and quality evidence.</p></div>
+        <div class="comp"><h3>Production and crew scheduling</h3><p>Crew loading and waterfront schedules that keep trades moving.</p></div>
+        <div class="comp"><h3>Drawing and cable cross-reference</h3><p>Drawing, cable and configuration checks before installation.</p></div>
+        <div class="comp"><h3>QR-to-portal field tracking</h3><p>Every technician works from a secure tablet: scan the QR code posted in a compartment to pull up its drawings, work items and checklists. Each update posts to our customer portal in real time.</p></div>
       </section>
 
       <section>
         <h2>Differentiators</h2>
         <ul class="diffs">
-          <li><strong>Deck-plate experience.</strong> Led by a production manager who has run Navy modernization work on the San Diego waterfront.</li>
-          <li><strong>Records that hold up.</strong> Documentation built to the standard inspectors and primes check against, not reconstructed after the fact.</li>
-          <li><strong>Status you can see.</strong> Progress reported by compartment and by alteration, so open items surface early.</li>
+          <li>DDG and LPD modernization experience in San Diego</li>
+          <li>Led by a Marine Corps officer with 20+ years of service</li>
+          <li>Real-time customer portal fed straight from the deckplates</li>
+          <li>Based in San Diego, minutes from the waterfront</li>
         </ul>
-      </section>
-
-      <section>
-        <h2>Leadership</h2>
-        <div class="leader">
-          <span class="leader-mark" aria-hidden="true">RW</span>
-          <div>
-            <h3>Rahman Weaver</h3>
-            <p class="role">Founder and Managing Member</p>
-            <p class="bio">Marine Corps officer with more than 20 years of military service. Production management experience from Navy ship modernization programs in San Diego, including alteration documentation, compartment closeout and crew scheduling across multiple ships. B.S. in Aerospace Engineering, The University of Texas at Austin.</p>
-          </div>
-        </div>
       </section>
     </div>
 
     <aside class="side">
-      <section>
-        <h2>Company data</h2>
-        <dl class="facts">
-          <div><dt>Legal name</dt><dd>Weaver Maritime Technologies, LLC</dd></div>
-          <div><dt>Location</dt><dd>San Diego, California</dd></div>
-          <div><dt>Ownership</dt><dd>Veteran-owned small business</dd></div>
-          <!-- Add once SAM.gov issues them:
-          <div><dt>UEI</dt><dd>XXXXXXXXXXXX</dd></div>
-          <div><dt>CAGE code</dt><dd>XXXXX</dd></div>
-          -->
-        </dl>
-      </section>
-      <section>
-        <h2>NAICS codes</h2>
-        <div class="naics">
-          <div><b>336611</b><span>Ship Building and Repairing</span></div>
-          <div><b>541330</b><span>Engineering Services</span></div>
+      <p class="label">Company data</p>
+      <dl class="facts">
+        <div><dt>UEI</dt><dd>LHXCNYYEMP96</dd></div>
+        <div><dt>NAICS</dt><dd>336611 (primary)<small>Ship Building and Repairing</small><b>541330</b><small>Engineering Services</small></dd></div>
+        <div><dt>PSC</dt><dd>J019, R425</dd></div>
+        <div><dt>Socioeconomic</dt><dd>Self-certified Veteran-Owned Small Business</dd></div>
+        <div><dt>Entity</dt><dd>California LLC, est. 2026</dd></div>
+      </dl>
+
+      <div class="leaders">
+        <p class="label">Leadership</p>
+        <div class="leader">
+          <h3>Rahman Weaver</h3>
+          <p class="role">Founder &amp; CEO</p>
+          <p class="bio">Marine Corps officer, 20+ years of service. Production and installation leadership on Navy ship modernization in San Diego.</p>
         </div>
-      </section>
-      <section>
-        <h2>Focus areas</h2>
-        <div class="chips">
-          <span>SHIPALTs</span><span>Installation planning</span><span>Compartment closeout</span>
-          <span>QA documentation</span><span>Objective quality evidence</span><span>Crew scheduling</span>
-          <span>Progress tracking</span><span>C5I installation</span><span>Cable &amp; equipment tracking</span>
+        <div class="leader">
+          <h3>Raphael Weaver</h3>
+          <p class="role">Chief Technology Officer</p>
+          <p class="bio">A decade of Navy and Air Force defense contracting, including Aegis combat system simulation and F-16 radar warning software. 16+ years in software and systems engineering.</p>
         </div>
-      </section>
-      <section class="contact">
-        <h2>Contact</h2>
-        <div><small>Teaming, subcontracts &amp; bids</small><a href="mailto:contracts@weavermaritimetechnologies.com">contracts@<wbr>weavermaritimetechnologies.com</a></div>
-        <div><small>General inquiries</small><a href="mailto:info@weavermaritimetechnologies.com">info@<wbr>weavermaritimetechnologies.com</a></div>
-        <div><small>Web</small><a href="https://weavermaritimetechnologies.com/">weavermaritimetechnologies.com</a></div>
-      </section>
-      <div class="badge">
-        <img src="../favicon.svg" alt="">
-        <p><span>Veteran-owned</span>Small business, San Diego</p>
       </div>
     </aside>
   </main>
 
-  <footer class="foot">
-    <a href="https://weavermaritimetechnologies.com/">weavermaritimetechnologies.com</a>
-    <span><b>Teaming &amp; bids:</b> <a href="mailto:contracts@weavermaritimetechnologies.com">contracts@weavermaritimetechnologies.com</a></span>
-    <span>San Diego, California</span>
+  <footer class="contact">
+    <div>
+      <p class="label">Contact</p>
+      <h3>Rahman Weaver, Founder &amp; CEO</h3>
+      <p>(512) 736-3634 &nbsp;|&nbsp; <a href="mailto:rahman@weavermaritimetechnologies.com">rahman@weavermaritimetechnologies.com</a></p>
+      <p><a href="https://weavermaritimetechnologies.com/">weavermaritimetechnologies.com</a></p>
+    </div>
+    <div class="qr">
+      <div id="qr" aria-hidden="true"></div>
+      <span>Scan for our website</span>
+    </div>
   </footer>
 </div>
+<script>
+  if (window.qrcode) {
+    var qr = qrcode(0, 'M');
+    qr.addData('https://weavermaritimetechnologies.com/');
+    qr.make();
+    document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 3, margin: 0, scalable: true });
+  }
+</script>
 </body>
 </html>
