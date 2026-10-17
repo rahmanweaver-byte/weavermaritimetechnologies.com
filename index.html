@@ -77,7 +77,7 @@
     </span>
   </a>
   <div class="header-actions">
-    <a class="header-link" href="portal-demo.html">Portal demo</a>
+    <a class="header-link" href="field.html">Portal demo</a>
     <a class="header-cta" href="#contact">Get in touch</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
       <span class="menu-label">Menu</span>
@@ -103,7 +103,7 @@
       <p class="menu-aside-label">Location</p>
       <p>San Diego, California</p>
       <p class="menu-aside-label">Customer portal</p>
-      <a href="portal-demo.html">Try the demo</a>
+      <a href="field.html">Take the guided tour</a>
       <p class="menu-aside-label">Capability statement</p>
       <a href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Download the PDF</a>
     </div>
@@ -226,22 +226,50 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow" data-reveal>Customer portal</p>
-        <h2 class="section-title" id="portal-title" data-reveal>Every compartment, visible from your desk.</h2>
-        <p class="section-intro" data-reveal>Primes sign in with their own company accounts to follow alteration progress, closeout readiness and open items, updated by our crews from the deckplates as the work happens.</p>
+        <h2 class="section-title" id="portal-title" data-reveal>From the deckplate to your desk, as it happens.</h2>
+        <p class="section-intro" data-reveal>Our technicians update each compartment on a tablet, in the space. You follow the work in a secure portal: status, quality evidence and open items, without waiting for a report.</p>
       </div>
 
-      <figure class="portal-shot" data-reveal>
-        <a class="portal-frame" href="dashboard.html" aria-label="Open the project status screen in the portal demo">
-          <img src="portal-overview.webp" width="1920" height="1200" alt="Portal project status screen: a closeout map of deck 2 colored by status, counts of closed-out spaces and open items, and a live activity feed" loading="lazy">
-        </a>
-        <figcaption>Project status, with a closeout map of every space on the deck</figcaption>
-      </figure>
+      <ol class="portal-flow">
+        <li class="flow-step" data-reveal>
+          <span class="flow-num" aria-hidden="true">1</span>
+          <a class="portal-frame" href="field.html" aria-label="Step 1 in the demo: the technician's tablet">
+            <img src="portal-field.webp" width="1920" height="1200" alt="Technician tablet after scanning compartment 2-126-1-L, with the space marked ready for QA and today's checklist" loading="lazy">
+          </a>
+          <h3>Scan in the space</h3>
+          <p>A technician scans the QR code posted in the compartment, then updates its status, checklist and photos.</p>
+        </li>
+        <li class="flow-step" data-reveal style="--d:.08s">
+          <span class="flow-num" aria-hidden="true">2</span>
+          <a class="portal-frame" href="dashboard.html" aria-label="Step 2 in the demo: the project overview">
+            <img src="portal-overview.webp" width="1920" height="1200" alt="Portal project status: a closeout map of deck 2 colored by status, progress counts and a live activity feed" loading="lazy">
+          </a>
+          <h3>See it live</h3>
+          <p>The update posts to your portal as soon as the tablet has coverage: closeout map, schedule and live feed.</p>
+        </li>
+        <li class="flow-step" data-reveal style="--d:.16s">
+          <span class="flow-num" aria-hidden="true">3</span>
+          <a class="portal-frame" href="compartment.html" aria-label="Step 3 in the demo: one compartment in detail">
+            <img src="portal-compartment.webp" width="1920" height="1200" alt="Compartment screen: closeout checklist, quality evidence and history for one space" loading="lazy">
+          </a>
+          <h3>Review each space</h3>
+          <p>Every compartment has its checklist, quality evidence and history, ready for your walkthrough and sign-off.</p>
+        </li>
+        <li class="flow-step" data-reveal style="--d:.24s">
+          <span class="flow-num" aria-hidden="true">4</span>
+          <a class="portal-frame" href="open-items.html" aria-label="Step 4 in the demo: open items">
+            <img src="portal-open-items.webp" width="1920" height="1200" alt="Open items screen: a problem found in the field with a sketch of the proposed fix and a button to approve it" loading="lazy">
+          </a>
+          <h3>Decide in one click</h3>
+          <p>Problems found in the field arrive with a proposed fix. Approve it or ask a question, and the work keeps moving.</p>
+        </li>
+      </ol>
 
       <div class="portal-actions" data-reveal>
-        <a class="pill-link pill-link--solid" href="portal-demo.html">Try the demo <span aria-hidden="true">&rarr;</span></a>
+        <a class="pill-link pill-link--solid" href="field.html">Take the guided tour <span aria-hidden="true">&rarr;</span></a>
         <a class="pill-link" href="#contact-form">Ask for a walkthrough</a>
       </div>
-      <p class="portal-note">Shown with sample data. The portal holds status summaries only; drawings and controlled records stay in approved systems.</p>
+      <p class="portal-note">The tour follows one compartment through six screens, using sample data. The portal holds status summaries only; drawings and controlled records stay in approved systems.</p>
     </div>
   </section>
 

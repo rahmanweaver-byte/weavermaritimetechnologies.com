@@ -887,8 +887,22 @@ button.pill-link--solid:hover { background: var(--white); }
 .portal-frame:hover { border-color: var(--brass-lt); }
 .portal-frame img { width: 100%; }
 .portal-shot figcaption { margin-top: 14px; font-size: 0.95rem; color: var(--muted); }
-.portal-pair { display: grid; gap: 32px; margin-top: 40px; }
-@media (min-width: 900px) { .portal-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.portal-flow { position: relative; display: grid; gap: 40px 28px; margin: 0; padding: 0; list-style: none; counter-reset: flow; }
+@media (min-width: 700px) { .portal-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) {
+  .portal-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  /* one line threading the four steps together */
+  .portal-flow::before { content: ""; position: absolute; left: 18px; right: 18px; top: 17px; height: 1px; background: linear-gradient(90deg, var(--brass-lt), var(--line-strong)); }
+}
+.flow-step { position: relative; display: flex; flex-direction: column; }
+.flow-num {
+  position: relative; display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 18px;
+  border: 1px solid var(--brass-lt); border-radius: 50%; background: var(--deep);
+  font-size: 0.95rem; font-weight: 700; color: var(--brass-lt);
+}
+.flow-step .portal-frame { margin-bottom: 18px; }
+.flow-step h3 { margin: 0 0 8px; font-size: 1.2rem; font-weight: 600; font-stretch: 106%; color: var(--white); }
+.flow-step p { margin: 0; font-size: 0.98rem; }
 .portal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 48px; }
 .portal-note { margin: 20px 0 0; max-width: 70ch; font-size: 0.9rem; color: var(--muted); }
 
