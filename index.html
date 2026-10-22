@@ -230,6 +230,25 @@
         <p class="section-intro" data-reveal>Our technicians update each compartment on a tablet, in the space. You follow the work in a secure portal: status, quality evidence and open items, without waiting for a report.</p>
       </div>
 
+      <figure class="portal-shot portal-video" data-reveal style="margin: 0 0 clamp(48px, 7vw, 88px);">
+        <div class="portal-frame">
+          <video src="Weaver-QR-to-Portal.mp4" poster="Weaver-QR-to-Portal-poster.jpg" width="1920" height="1080" muted loop playsinline controls preload="none" style="display: block; width: 100%; height: auto;" aria-label="Video: a technician scans the QR code in compartment 2-126-1-L, updates it on a tablet, and the update appears in the customer portal"></video>
+        </div>
+        <figcaption>One compartment’s update, from the QR code on the bulkhead to your portal, in 30 seconds.</figcaption>
+      </figure>
+      <script>
+        (function () {
+          var v = document.querySelector('.portal-video video');
+          if (!v || !('IntersectionObserver' in window)) return;
+          if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { v.play().catch(function () {}); } else { v.pause(); }
+            });
+          }, { threshold: 0.5 }).observe(v);
+        })();
+      </script>
+
       <ol class="portal-flow">
         <li class="flow-step" data-reveal>
           <span class="flow-num" aria-hidden="true">1</span>
