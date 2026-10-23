@@ -8,7 +8,7 @@
     {
       page: 'field.html',
       title: 'In the space',
-      text: "A Weaver technician scans the QR code posted in compartment 2-126-1-L. The tablet shows today's work for that space, and every status change and photo posts to your portal.",
+      text: "A Weaver Maritime Technologies technician scans the QR code posted in compartment 2-126-1-L. The tablet shows today's work for that space, and every status change and photo posts to your portal.",
       spot: 'Ready for QA',
     },
     {
@@ -26,7 +26,7 @@
     {
       page: 'compartment.html',
       title: 'One space, start to finish',
-      text: 'Each compartment carries its checklist, quality evidence and history. When Weaver QA passes it, you schedule your walkthrough and sign off here.',
+      text: 'Each compartment carries its checklist, quality evidence and history. When Weaver Maritime Technologies QA passes it, you schedule your walkthrough and sign off here.',
       spot: 'Schedule your walkthrough',
     },
     {
