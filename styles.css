@@ -664,6 +664,8 @@ a { color: inherit; }
 .record div { display: grid; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .record dt { padding-top: 3px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
 .record dd { margin: 0; color: var(--white); }
+.record dd a { display: inline-block; margin-top: 6px; color: var(--sea-lt); text-underline-offset: 3px; transition: color 0.3s; }
+.record dd a:hover { color: var(--brass-lt); }
 @media (min-width: 640px) { .record div { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; } }
 
 /* ---------- Company: compass instrument ---------- */
