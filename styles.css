@@ -666,6 +666,8 @@ a { color: inherit; }
 .record dd { margin: 0; color: var(--white); }
 .record dd a { display: inline-block; margin-top: 6px; color: var(--sea-lt); text-underline-offset: 3px; transition: color 0.3s; }
 .record dd a:hover { color: var(--brass-lt); }
+.record dd.cert { display: flex; align-items: center; gap: 20px; }
+.cert-badge { flex: none; width: 80px; height: auto; }
 @media (min-width: 640px) { .record div { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; } }
 
 /* ---------- Company: compass instrument ---------- */
