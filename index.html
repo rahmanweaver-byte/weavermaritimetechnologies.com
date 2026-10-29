@@ -23,6 +23,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Six+Caps&display=swap">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ---------- Careers ---------- */
+.careers { border-top: 1px solid var(--line); }
+.careers-grid { display: grid; gap: 72px; }
+@media (min-width: 960px) { .careers-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; align-items: start; } }
+.careers-lang h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 600; font-stretch: 106%; line-height: 1.15; color: var(--white); }
+.careers-lang > p { margin: 0; max-width: 46ch; }
+.careers-points { margin: 32px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.careers-points li { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.careers-points strong { display: block; margin-bottom: 2px; font-weight: 600; font-stretch: 104%; color: var(--white); }
+.careers-share { margin: 32px 0 0; max-width: 44ch; padding: 4px 0 4px 20px; border-left: 3px solid var(--brass); font-size: 1.125rem; line-height: 1.5; color: var(--white); }
+.careers-share strong { font-weight: 700; color: var(--brass-lt); }
+.careers-apply { margin-top: 36px; }
+.careers-apply p { margin: 0 0 14px; max-width: 46ch; font-size: 0.95rem; color: var(--muted); }
+.careers-apply .contact-link { display: inline-block; margin-bottom: 8px; }
+.careers-eoe { margin: 28px 0 0; font-size: 0.85rem; color: var(--muted); }
+</style>
 <script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">
 {
@@ -93,7 +110,8 @@
       <li style="--n:1"><a href="#approach"><span class="menu-num">02</span>How we work</a></li>
       <li style="--n:2"><a href="#leadership"><span class="menu-num">03</span>Leadership</a></li>
       <li style="--n:3"><a href="#company"><span class="menu-num">04</span>Company</a></li>
-      <li style="--n:4"><a href="#contact"><span class="menu-num">05</span>Contact</a></li>
+      <li style="--n:4"><a href="#careers"><span class="menu-num">05</span>Careers</a></li>
+      <li style="--n:5"><a href="#contact"><span class="menu-num">06</span>Contact</a></li>
     </ol>
     <div class="menu-aside">
       <p class="menu-aside-label">Teaming, subcontracts and bids</p>
@@ -132,6 +150,7 @@
       <div class="hero-actions">
         <a class="pill-link pill-link--solid" href="#capabilities">See our services</a>
         <a class="pill-link" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Capability statement <span aria-hidden="true">&darr;</span></a>
+        <a class="pill-link" href="#careers"><span>We’re hiring / <span lang="es">Estamos contratando</span></span></a>
       </div>
     </div>
 
@@ -408,6 +427,52 @@
     </div>
   </section>
 
+  <!-- Careers -->
+  <section class="section careers" id="careers" aria-labelledby="careers-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Careers</p>
+        <h2 class="section-title" id="careers-title" data-reveal>We’re hiring. <span lang="es">Estamos contratando.</span></h2>
+      </div>
+
+      <div class="careers-grid">
+        <div class="careers-lang" data-reveal>
+          <h3>Come aboard</h3>
+          <p>Weaver Maritime Technologies is a veteran-owned naval ship repair and modernization company in San Diego. We’re building our first crew, and we want people who know ships and are good with tech.</p>
+          <ul class="careers-points">
+            <li><strong>Notice ahead of time.</strong>You hear about schedule changes before they happen, not after.</li>
+            <li><strong>A real say.</strong>The people doing the work help plan it.</li>
+            <li><strong>Leaders eat last.</strong>We run this company the way we were trained: the crew comes first.</li>
+          </ul>
+          <p class="careers-share"><strong>Get in early.</strong> If we ever sell the company, our first crew splits 5% of the sale price.</p>
+          <div class="careers-apply">
+            <p>Email your resume, along with your trade and the best number to reach you. No resume? Send your name, trade, and number anyway. Email gets the fastest response.</p>
+            <a class="contact-link" href="mailto:info@weavermaritimetechnologies.com?subject=Resume">info@weavermaritimetechnologies.com</a><br>
+            <a class="contact-link" href="tel:+16193893328">(619) 389-3328</a>
+          </div>
+          <p class="careers-eoe">Weaver Maritime Technologies is an equal opportunity employer.</p>
+        </div>
+
+        <div class="careers-lang" lang="es" data-reveal style="--d:.12s">
+          <h3>Sube a bordo</h3>
+          <p>Weaver Maritime Technologies es una empresa de reparación y modernización de buques de la Marina en San Diego, propiedad de un veterano. Estamos formando nuestro primer equipo y buscamos gente que sepa de barcos y de tecnología.</p>
+          <ul class="careers-points">
+            <li><strong>Aviso con tiempo.</strong>Te enteras de los cambios de horario antes, no después.</li>
+            <li><strong>Tu opinión cuenta.</strong>Quienes hacen el trabajo ayudan a planearlo.</li>
+            <li><strong>Los líderes comen al final.</strong>Dirigimos esta empresa como nos entrenaron: primero el equipo.</li>
+          </ul>
+          <p class="careers-share"><strong>Únete desde el principio.</strong> Si algún día vendemos la empresa, nuestro primer equipo se reparte el 5% del precio de venta.</p>
+          <div class="careers-apply">
+            <p>Envía tu currículum por correo, con tu oficio y el mejor número para llamarte. ¿No tienes currículum? Mándanos tu nombre, tu oficio y tu número de todos modos. Por correo te respondemos más rápido.</p>
+            <a class="contact-link" href="mailto:info@weavermaritimetechnologies.com?subject=Curr%C3%ADculum">info@weavermaritimetechnologies.com</a><br>
+            <a class="contact-link" href="tel:+16193893328">(619) 389-3328</a>
+          </div>
+          <p class="careers-eoe">Weaver Maritime Technologies ofrece igualdad de oportunidades de empleo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="section contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
@@ -551,6 +616,7 @@
     <p>&copy; <span data-year>2026</span> Weaver Maritime Technologies, LLC. San Diego, California.</p>
     <p>SBA-certified service-disabled veteran-owned small business (SDVOSB)</p>
     <a class="footer-link" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Capability statement (PDF)</a>
+    <a class="footer-link" href="#careers">Careers</a>
     <a class="back-top" href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>
 </footer>
