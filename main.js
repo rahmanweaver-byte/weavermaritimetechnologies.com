@@ -1426,28 +1426,6 @@
     });
   }
 
-  /* ---------- Cursor ring (mouse only) ---------- */
-  const cursor = $('.cursor');
-  if (cursor && !reduceMotion && finePointer) {
-    let x = -100, y = -100, cx = -100, cy = -100;
-    const follow = animator(() => {
-      cx = lerp(cx, x, 0.2);
-      cy = lerp(cy, y, 0.2);
-      cursor.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
-      return Math.abs(x - cx) > 0.1 || Math.abs(y - cy) > 0.1;
-    });
-    window.addEventListener('pointermove', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      x = e.clientX; y = e.clientY;
-      cursor.classList.add('is-active');
-      follow();
-    }, { passive: true });
-    document.addEventListener('pointerover', (e) => {
-      cursor.classList.toggle('is-hover', !!e.target.closest('a, button, .chip, .instrument-dial, [role="button"], [role="slider"]'));
-    });
-    document.documentElement.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
-  }
-
   /* ---------- Footer year ---------- */
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
 })();
