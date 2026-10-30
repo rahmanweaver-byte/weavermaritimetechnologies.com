@@ -1006,23 +1006,6 @@ button.pill-link--solid:hover { background: var(--white); }
 }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
 
-/* ---------- Cursor ---------- */
-.cursor { display: none; }
-@media (hover: hover) and (pointer: fine) {
-  .js .cursor {
-    display: block; position: fixed; left: 0; top: 0; z-index: 140;
-    width: 36px; height: 36px; margin: -18px 0 0 -18px;
-    border: 1.5px solid rgba(255, 255, 255, 0.55); border-radius: 50%;
-    pointer-events: none; opacity: 0;
-    transition: width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease), border-color 0.3s, background-color 0.3s, opacity 0.3s;
-  }
-  .js .cursor.is-active { opacity: 1; }
-  .js .cursor.is-hover {
-    width: 64px; height: 64px; margin: -32px 0 0 -32px;
-    border-color: var(--brass-lt); background: rgba(221, 168, 104, 0.12);
-  }
-}
-
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1036,7 +1019,6 @@ button.pill-link--solid:hover { background: var(--white); }
   .card { transform: none; }
   .card::after { display: none; }
   .art .pulse { opacity: 0.6; }
-  .js .cursor { display: none !important; }
   .art .trace { display: none; }
   .art .plan-scan { display: none; }
   .ping { display: none; }
