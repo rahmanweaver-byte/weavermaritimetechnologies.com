@@ -84,6 +84,12 @@
     <path pathLength="1" d="M178 64L182 42H186L190 64ZM172 50H196"/>
     <path pathLength="1" d="M20 95.5H570"/>
   </symbol>
+  <!-- Icon on the Save contact buttons -->
+  <symbol id="icon-contact" viewBox="0 0 24 24">
+    <circle cx="9.5" cy="8" r="3.6"/>
+    <path d="M2.8 20c.4-3.6 3.1-6 6.7-6s6.3 2.4 6.7 6"/>
+    <path d="M19 7.5v6M16 10.5h6"/>
+  </symbol>
 </svg>
 
 <header class="site-header">
@@ -150,6 +156,8 @@
       <p class="hero-copy">A service-disabled veteran-owned small business supporting Navy ship repair and modernization, from installation planning through compartment closeout.</p>
       <div class="hero-actions">
         <a class="pill-link pill-link--solid" href="#capabilities">See our services</a>
+        <!-- Contact card for phones. No download attribute: iPhones then open it as a contact instead of saving a file. -->
+        <a class="pill-link hero-save" href="rahman-weaver.vcf" type="text/vcard"><svg class="pill-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-contact"/></svg><span>Save contact<span class="visually-hidden">: Rahman Weaver, Founder &amp; CEO</span></span></a>
         <a class="pill-link" href="Weaver-Maritime-Technologies-Capability-Statement.pdf" download>Capability statement <span aria-hidden="true">&darr;</span></a>
         <a class="pill-link" href="#careers"><span>Get on the list / <span lang="es">Anótate en la lista</span></span></a>
       </div>
@@ -492,7 +500,12 @@
             <p>Everything else</p>
             <a class="contact-link" href="mailto:info@weavermaritimetechnologies.com">info@weavermaritimetechnologies.com</a>
           </div>
-          <div class="contact-block contact-block--radar" data-reveal style="--d:.2s">
+          <div class="contact-block" data-reveal style="--d:.2s">
+            <h3>Rahman Weaver</h3>
+            <p>Founder &amp; CEO</p>
+            <a class="pill-link contact-save" href="rahman-weaver.vcf" type="text/vcard"><svg class="pill-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-contact"/></svg><span>Save contact<span class="visually-hidden">: Rahman Weaver, Founder &amp; CEO</span></span></a>
+          </div>
+          <div class="contact-block contact-block--radar" data-reveal style="--d:.3s">
             <div class="radar-scope" aria-hidden="true">
               <span class="radar-sweep"></span>
               <span class="radar-blip" style="left:71%;top:32%;--bd:.56s"></span>

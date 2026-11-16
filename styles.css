@@ -313,6 +313,19 @@ a { color: inherit; }
   .hero-ship { left: 5%; }
   .hero-title { font-size: clamp(2.3rem, 10vw, 3.4rem); }
   .hero-kicker { font-size: 0.7rem; letter-spacing: 0.16em; }
+  /* Four stacked buttons need more room than a hero locked to the screen height has on
+     a phone, so here the hero grows with its content instead of running into the header
+     above and the hint below. */
+  .hero { height: auto; }
+  .hero-content {
+    position: relative; inset: auto;
+    min-height: max(620px, 100vh); min-height: max(620px, 100svh);
+    padding-top: var(--header-h);
+  }
+  .hero-kicker { margin-bottom: 16px; }
+  .hero-copy { margin-top: 28px; }
+  .hero-actions { flex-direction: column; align-items: center; gap: 10px; margin-top: 22px; }
+  .hero-actions .pill-link { padding: 10px 24px; }
 }
 
 /* ---------- Sections ---------- */
@@ -608,6 +621,9 @@ a { color: inherit; }
 .pill-link:hover { background: var(--white); border-color: var(--white); color: var(--abyss); }
 .pill-link--solid { background: var(--brass-lt); border-color: var(--brass-lt); color: var(--abyss); }
 .pill-link--solid:hover { background: var(--white); border-color: var(--white); }
+.pill-icon { flex: none; width: 1.15em; height: 1.15em; }
+/* The hero's Save contact button stands in for the header's Get in touch button, which only shows from 900px up */
+@media (min-width: 900px) { .hero-save { display: none; } }
 
 /* ---------- Approach ---------- */
 .approach { border-top: 1px solid var(--line); }
@@ -730,6 +746,7 @@ a { color: inherit; }
   transition: background-size 0.4s var(--ease), color 0.3s;
 }
 .contact-link:hover { color: var(--white); background-size: 100% 1px; }
+.contact-save { padding: 10px 22px; font-size: 0.95rem; }
 .coords { display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text); }
 .coords span { white-space: nowrap; }
 .contact-block--radar { display: flex; align-items: center; gap: 24px; }
