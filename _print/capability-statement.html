@@ -49,14 +49,16 @@ p { margin: 0; }
 /* Body */
 .body { display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 34px; padding: 34px 48px 0; }
 h2 { margin: 0 0 10px; font-size: 18px; font-weight: 800; color: var(--navy); }
-section + section { margin-top: 24px; }
+section + section { margin-top: 20px; }
 .lead { font-size: 12.5px; line-height: 1.6; }
-.comp + .comp { margin-top: 12px; }
+.comp + .comp { margin-top: 10px; }
 .comp h3 { margin: 0 0 2px; font-size: 13px; font-weight: 800; color: var(--navy); }
 .comp p { font-size: 11.6px; line-height: 1.5; color: var(--ink-2); }
-.diffs { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.diffs { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .diffs li { position: relative; padding-left: 18px; font-size: 12px; line-height: 1.45; }
 .diffs li::before { content: ""; position: absolute; left: 0; top: 4px; width: 8px; height: 8px; background: var(--brass); }
+.diffs li.key { font-size: 14.5px; font-weight: 800; color: var(--navy); }
+.diffs li.key::before { top: 6px; }
 
 /* Sidebar */
 .side { padding: 20px 20px 22px; background: var(--mist); }
@@ -102,11 +104,12 @@ section + section { margin-top: 24px; }
     <div>
       <section>
         <h2>Company Overview</h2>
-        <p class="lead">Weaver Maritime Technologies, LLC is an SBA-certified service-disabled veteran-owned small business (SDVOSB) in San Diego supporting U.S. Navy ship repair and modernization. We plan, track and close out shipboard alterations so availabilities finish on schedule and pass sell-off the first time.</p>
+        <p class="lead">Weaver Maritime Technologies, LLC is an SBA-certified service-disabled veteran-owned small business (SDVOSB) in San Diego that installs U.S. Navy ship alterations. We install, track and close out SHIPALTs so availabilities finish on schedule and pass sell-off the first time.</p>
       </section>
 
       <section>
         <h2>Core Competencies</h2>
+        <div class="comp"><h3>Alteration installation</h3><p>Cable, MIL-STD-2042 fiber optics, equipment and hot work, pierside and in drydock.</p></div>
         <div class="comp"><h3>Alteration installation planning</h3><p>SHIPALT sequencing against schedules, drawings and space access.</p></div>
         <div class="comp"><h3>Compartment closeout and quality</h3><p>Space-by-space closeout, inspections and quality evidence.</p></div>
         <div class="comp"><h3>Production and crew scheduling</h3><p>Crew loading and waterfront schedules that keep trades moving.</p></div>
@@ -117,9 +120,11 @@ section + section { margin-top: 24px; }
       <section>
         <h2>Differentiators</h2>
         <ul class="diffs">
-          <li>DDG and LPD modernization experience in San Diego</li>
+          <li class="key">Real-time customer portal fed straight from the deckplates</li>
+          <li>DDG and LPD alteration installation experience in San Diego</li>
+          <li>Current MIL-STD-2042 shipboard fiber optic certification</li>
           <li>Led by a Marine Corps officer with 20+ years of service</li>
-          <li>Real-time customer portal fed straight from the deckplates</li>
+          <li>CMMC Level 1 (Self) complete, Level 2 in progress</li>
           <li>Based in San Diego, minutes from the waterfront</li>
         </ul>
       </section>
@@ -141,7 +146,7 @@ section + section { margin-top: 24px; }
         <div class="leader">
           <h3>Rahman Weaver</h3>
           <p class="role">Founder &amp; CEO</p>
-          <p class="bio">Marine Corps officer, 20+ years of service. Production and installation leadership on Navy ship modernization in San Diego.</p>
+          <p class="bio">Marine Corps officer, 20+ years of service. Led alteration installation teams on Navy ship modernization in San Diego. MIL-STD-2042 fiber optic certified.</p>
         </div>
         <div class="leader">
           <h3>Raphael Weaver</h3>

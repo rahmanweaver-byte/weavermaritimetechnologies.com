@@ -388,7 +388,7 @@
     return { resize, addRipple, ping };
   }
 
-  /* ---------- Hero headline: planned, tracked, closed out ---------- */
+  /* ---------- Hero headline: installed, tracked, closed out ---------- */
   const rotator = $('[data-rotator]');
   if (rotator && !reduceMotion) {
     const wordsInTurn = $$('span', rotator);
