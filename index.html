@@ -53,6 +53,7 @@
   "address": {"@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US"}
 }
 </script>
+<link rel="stylesheet" href="site-language.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -101,6 +102,10 @@
     </span>
   </a>
   <div class="header-actions">
+    <div class="wmt-site-language">
+      <a data-wmt-portal href="https://weaver-maritime-portal-preview.chummyshrew24.chatgpt.site/?lang=en">Client portal</a>
+      <button type="button" data-wmt-language aria-label="Switch to Spanish" hidden><span lang="es">Español</span></button>
+    </div>
     <a class="header-link" href="field.html">Portal demo</a>
     <a class="header-cta" href="#contact">Get in touch</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
@@ -758,5 +763,6 @@
   });
 })();
 </script>
+<script type="module" src="site-language.js"></script>
 </body>
 </html>

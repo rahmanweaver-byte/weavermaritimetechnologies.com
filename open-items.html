@@ -18,8 +18,15 @@ a{color:#8F5A25}a:hover{color:#0B2136}
 .demo-bar a{color:#0B2136;font-weight:600}
 .demo-bar a:hover{color:#000}
 </style>
+<link rel="stylesheet" href="site-language.css">
 </head>
 <body>
+<div class="wmt-site-language-bar">
+  <div class="wmt-site-language">
+    <a data-wmt-portal href="https://weaver-maritime-portal-preview.chummyshrew24.chatgpt.site/?lang=en">Client portal</a>
+    <button type="button" data-wmt-language aria-label="Switch to Spanish" hidden><span lang="es">Español</span></button>
+  </div>
+</div>
 <div class="demo-bar" role="note">
   <span><strong>Portal demo with sample data.</strong> This is not a live system and nothing you click is saved.</span>
   <nav aria-label="Demo">
@@ -167,5 +174,6 @@ a{color:#8F5A25}a:hover{color:#0B2136}
   </main>
 </div>
 <script src="portal-tour.js" defer></script>
+<script type="module" src="site-language.js"></script>
 </body>
 </html>

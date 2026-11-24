@@ -32,9 +32,10 @@
   /* ---------- Statement: split words for the scroll highlight ---------- */
   const statement = $('.statement-text');
   const words = [];
-  if (statement) {
-    const parts = statement.textContent.trim().split(/\s+/);
+  function splitStatement(text) {
+    const parts = text.trim().split(/\s+/);
     statement.textContent = '';
+    words.length = 0;
     parts.forEach((part, i) => {
       const span = document.createElement('span');
       span.className = 'w';
@@ -42,6 +43,14 @@
       statement.appendChild(span);
       if (i < parts.length - 1) statement.appendChild(document.createTextNode(' '));
       words.push(span);
+    });
+  }
+  if (statement) {
+    statement.dataset.wmtStatement = statement.textContent.trim();
+    splitStatement(statement.dataset.wmtStatement);
+    statement.addEventListener('wmt:statement', event => {
+      if (statement.textContent !== event.detail) splitStatement(event.detail);
+      requestAnimationFrame(onScroll);
     });
   }
 

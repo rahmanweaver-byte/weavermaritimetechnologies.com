@@ -20,8 +20,15 @@ a.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;bord
 a.btn:hover,a.btn:focus-visible{background:#FFFFFF}
 .position{font-size:13px;letter-spacing:0.08em;color:#8FA6BC}
 </style>
+<link rel="stylesheet" href="/site-language.css">
 </head>
 <body>
+<div class="wmt-site-language-bar wmt-site-language-error">
+  <div class="wmt-site-language">
+    <a data-wmt-portal href="https://weaver-maritime-portal-preview.chummyshrew24.chatgpt.site/?lang=en">Client portal</a>
+    <button type="button" data-wmt-language aria-label="Switch to Spanish" hidden><span lang="es">Español</span></button>
+  </div>
+</div>
 <main>
   <img src="/favicon.svg" alt="">
   <h1>Off course</h1>
@@ -29,5 +36,6 @@ a.btn:hover,a.btn:focus-visible{background:#FFFFFF}
   <a class="btn" href="/">Head back to port</a>
   <p class="position">Last known position: 30.2862&deg; N, 97.7394&deg; W</p>
 </main>
+<script type="module" src="/site-language.js"></script>
 </body>
 </html>
